@@ -29,37 +29,31 @@ class MenusTableSeeder extends Seeder
                 ['name' => '字典', 'key' => 'fa fa-key', 'url' => 'admin.keywords.index']
             ]],
         ];
-        $data = [];
-        $user_menu = [];
-        $user_id = \App\Models\AdminUser::first()->id;
-        $index = 1;
-        foreach ($menus as $key => $item) {
-            $menu = $item;
-            $menu['id'] = $index;
-            $index++;
-            $menu['pid'] = 0;
-            $menu['sort'] = $key+1;
-            unset($menu['children']);
-            array_push($data, $menu);
-            array_push($user_menu, ['user_id'=>$user_id, 'menu_id'=>$menu['id']]);
+        $list = $this->getMenu($menus, 0);
 
-            if (isset($item['children'])) {
-                foreach ($item['children'] as $key1 => $item1) {
-                    $menu1 = $item1;
-                    $menu1['id'] = $index;
-                    $index++;
-                    $menu1['pid'] = $menu['id'];
-                    $menu1['sort'] = $key1+1;
-                    array_push($data, $menu1);
-                    array_push($user_menu, ['user_id'=>$user_id, 'menu_id'=>$menu1['id']]);
-                }
-            }
-        }
         DB::table('menus')->truncate();
-        DB::table('user_menus')->truncate();
-        DB::table('menus')->insert($data);
-        DB::table('user_menus')->insert($user_menu);
+        DB::table('menus')->insert($list);
         // 清空菜单缓存
         Cache::forget(\App\Http\Middleware\Permission::MENU_CACHE_KEY);
+    }
+
+    protected $index = 1;
+    protected function getMenu($list, $pid = 0)
+    {
+        $data = [];
+        foreach ($list as $key => $item) {
+            $menu = $item;
+            $menu['id'] = $this->index;
+            $this->index++;
+            $menu['pid'] = $pid;
+            $menu['sort'] = $key + 1;
+            unset($menu['children']);
+            array_push($data, $menu);
+            if (isset($item['children'])) {
+                $children = $this->getMenu($item['children'], $menu['id']);
+                $data = array_merge($data, $children);
+            }
+        }
+        return $data;
     }
 }

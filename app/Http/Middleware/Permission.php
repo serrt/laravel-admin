@@ -42,11 +42,13 @@ class Permission
         if (Cache::has($key)) {
             $list = Cache::get($key);
         } else {
-//            $menu_ids = auth('admin')->user()->getAllPermissions()->pluck('menu_id')->reject(function ($name) {
-//                return empty($name);
-//            });
-//            $list = Menu::query()->whereIn('id', $menu_ids)->get();
-            $list = auth()->user()->menus;
+            $urls = auth('admin')->user()->getAllPermissions()->pluck('name');
+            $list = Menu::query()->whereIn('url', $urls)->with('parent')->get();
+            foreach ($list as $item) {
+                if ($item->pid && $list->where('id', $item->pid)->count() == 0) {
+                    $list->push($item->parent);
+                }
+            }
             Cache::forever($key, $list);
         }
         $menus = [];

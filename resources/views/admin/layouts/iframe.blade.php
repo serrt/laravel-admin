@@ -94,7 +94,7 @@
     </aside>
     <div class="control-sidebar-bg"></div>
 
-    <!-- 左边菜单 js填充 -->
+    <!-- 左边菜单 -->
     <aside class="main-sidebar">
         <section class="sidebar">
             <ul class="sidebar-menu">
@@ -107,18 +107,7 @@
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         @endif
                     </a>
-                    @if(isset($item['children']))
-                    <ul class="treeview-menu" style="display: {{$item['active']?'block':'none'}}">
-                        @foreach($item['children'] as $child)
-                        <li class="{{$child['active']?'active':''}}">
-                            <a href="{{isset($child['url'])?url($child['url']):'javascript:void(0)'}}" class="nav-link">
-                                <i class="{{$child['icon']}}"></i>
-                                <span class="title menu-text">{{$child['text']}}</span>
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                    @endif
+                    @include('admin.layouts._menu', ['item' => $item])
                 </li>
             @endforeach
             </ul>
