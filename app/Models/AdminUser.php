@@ -14,9 +14,4 @@ class AdminUser extends Authenticatable
     protected $hidden = ['password'];
 
     protected $rememberTokenName = '';
-
-    public function menus()
-    {
-        return $this->belongsToMany(Menu::class, 'user_menus', 'user_id', 'menu_id');
-    }
 }

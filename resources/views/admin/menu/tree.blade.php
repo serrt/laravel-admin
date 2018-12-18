@@ -10,6 +10,13 @@
                         <a href="{{route('admin.menu.edit', $permission)}}" class="list-link">
                             {{$permission->name}}
                         </a>
+
+                        @can('admin.menu.destroy')
+                        <button type="submit" form="delForm{{$permission->id}}" class="btn btn-default btn-xs" title="删除" onclick="return confirm('是否确定？')"><i class="fa fa-trash-o"></i></button>
+                        <form class="form-inline hide" id="delForm{{$permission->id}}" action="{{ route('admin.menu.destroy', $permission) }}" method="post">
+                            {{ csrf_field() }} {{ method_field('DELETE') }}
+                        </form>
+                        @endcan
                     
                     @if(!$permission->url)
                     <i class="fa fa-angle-left pull-right"></i>

@@ -44,9 +44,7 @@ class PermissionsController extends Controller
 
         $parent = PermissionResource::make($permission->parent);
 
-        $menu = MenuResource::make($permission->menu);
-
-        return view('admin.permission.edit', compact('permission', 'parent', 'menu'));
+        return view('admin.permission.edit', compact('permission', 'parent'));
     }
 
     public function update(Request $request, $id)

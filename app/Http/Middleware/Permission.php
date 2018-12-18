@@ -39,8 +39,8 @@ class Permission
     protected function cacheMenus()
     {
         $key = self::MENU_CACHE_KEY;
-        if (Cache::has($key)) {
-            $list = Cache::get($key);
+        if (session()->has($key)) {
+            $list = session($key);
         } else {
             $urls = auth('admin')->user()->getAllPermissions()->pluck('name');
             $list = Menu::query()->whereIn('url', $urls)->with('parent')->get();
@@ -49,7 +49,7 @@ class Permission
                     $list->push($item->parent);
                 }
             }
-            Cache::forever($key, $list);
+            session([$key => $list]);
         }
         $menus = [];
         foreach ($list->where('pid', 0)->sortBy('sort')->all() as $item) {

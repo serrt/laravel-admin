@@ -24,7 +24,6 @@ class CreatePermissionTables extends Migration
             $table->integer('pid')->default(0)->comment('父级id');
 //            $table->string('icon', 100)->nullable()->comment('图标');
 //            $table->string('description', 100)->nullable()->comment('描述');
-            $table->integer('menu_id')->nullable()->default(0)->comment('关联菜单(menu.id)');
             $table->timestamps();
         });
         DB::statement("ALTER TABLE ".$tableNames['permissions']." comment '权限菜单'");

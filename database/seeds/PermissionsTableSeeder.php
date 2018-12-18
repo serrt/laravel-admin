@@ -45,9 +45,6 @@ class PermissionsTableSeeder extends Seeder
             }
         }
 
-        // 所有的菜单
-        $menus = \App\Models\Menu::query()->pluck('id', 'url')->toArray();
-
         $index1 = 1;
         $guard = 'admin';
         $permissions = collect();
@@ -57,7 +54,6 @@ class PermissionsTableSeeder extends Seeder
                 'name' => $key1,
                 'display_name' => __('permission.'.$key1),
                 'pid' => 0,
-                'menu_id' => isset($menus[$key1])?$menus[$key1]:null,
             ]);
             $index1++;
             $index2=1;
@@ -75,7 +71,6 @@ class PermissionsTableSeeder extends Seeder
                     'name' => $value,
                     'display_name' => $tran,
                     'pid' => $permission->id,
-                    'menu_id' => isset($menus[$value])?$menus[$value]:null,
                 ]);
                 $index2++;
                 $permissions->push($sub_permission);

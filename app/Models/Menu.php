@@ -15,11 +15,6 @@ class Menu extends Model
         return $this->hasOne(Menu::class,'id', 'pid');
     }
 
-    public function users()
-    {
-        return $this->belongsToMany(AdminUser::class, 'user_menus', 'menu_id', 'user_id');
-    }
-
     public function children()
     {
         return $this->hasMany(Menu::class,'pid', 'id');

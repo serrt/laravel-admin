@@ -38,16 +38,6 @@
                         </select>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="selectMenu" class="control-label col-md-2">菜单</label>
-                    <div class="col-md-8">
-                        <select name="menu_id" class="form-control" id="selectMenu" data-json="{{json_encode($menu)}}" data-ajax-url="{{route('api.web.menu')}}">
-                            <option value=""></option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
                         <button type="submit" class="btn btn-primary">提交</button>

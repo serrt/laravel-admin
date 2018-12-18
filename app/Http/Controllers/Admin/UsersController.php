@@ -137,9 +137,6 @@ class UsersController extends Controller
         // 删除用户拥有的权限
         $user->revokePermissionTo($user->permissions);
 
-        // 删除拥有的菜单
-        $user->menus()->detach();
-
         $user->delete();
 
         return redirect(route('admin.user.index'))->with('flash_message', '删除成功');
@@ -163,14 +160,5 @@ class UsersController extends Controller
         $user_permissions = $user->permissions;
 
         return view('admin.user.permission', compact('user', 'user_permissions', 'permissions'));
-    }
-
-    public function menu($id)
-    {
-        $list = Menu::orderBy('sort')->orderBy('id')->get();
-
-        $user = AdminUser::findOrFail($id);
-
-        return view('admin.user.menu', compact('list', 'user'));
     }
 }

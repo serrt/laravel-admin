@@ -57,7 +57,6 @@
                             </form>
                             <a href="{{route('admin.user.role', $item)}}" class="btn btn-default btn-sm">修改角色</a>
                             <a href="{{route('admin.user.permission', $item)}}" class="btn btn-warning btn-sm">修改权限</a>
-                            <a href="{{route('admin.user.menu', $item->id)}}" class="btn btn-success btn-sm">修改菜单</a>
                         </td>
                     </tr>
                 @endforeach

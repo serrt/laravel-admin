@@ -24,13 +24,6 @@ class CreateMenusTable extends Migration
             $table->string('description', 50)->nullable()->comment('描述');
         });
         DB::statement("ALTER TABLE $table_name comment '菜单'");
-
-        $table_name1 = 'user_menus';
-        Schema::create('user_menus', function (Blueprint $table) {
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('menu_id');
-        });
-        DB::statement("ALTER TABLE $table_name1 comment '用户拥有的菜单'");
     }
 
     /**
@@ -41,6 +34,5 @@ class CreateMenusTable extends Migration
     public function down()
     {
         Schema::dropIfExists('menus');
-        Schema::dropIfExists('user_menus');
     }
 }

@@ -54,9 +54,6 @@ class MenusController extends Controller
     {
         $menu = Menu::with('children')->findOrFail($id);
 
-        // 移除用户的菜单
-        $menu->users()->detach($menu->children->push($menu));
-
         // 删除子菜单
         $menu->children()->delete();
 
