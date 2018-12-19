@@ -5,6 +5,7 @@
         <form action="{{route('admin.role.update',$role)}}" class="form-horizontal validate" method="post">
             {{csrf_field()}}
             {{method_field('put')}}
+            <input type="hidden" name="permissions" value="">
             <div class="form-group">
                 <label class="control-label col-md-2">权限</label>
                 <div class="col-md-8">

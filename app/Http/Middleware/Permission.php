@@ -26,12 +26,12 @@ class Permission
         $menus = $this->cacheMenus();
         view()->share(self::MENU_CACHE_KEY, $menus);
         if (isset($action['as'])) {
-            if ($user->can($action['as'])) {
-                $current_permission = \App\Models\Permission::query()->where('name', $action['as'])->first();
-                view()->share('current_permission', $current_permission);
-                return $next($request);
+            if (!$user->can($action['as']) && !config('app.debug')) {
+                throw UnauthorizedException::forPermissions([$action['as']]);
             }
-            throw UnauthorizedException::forPermissions([$action['as']]);
+            $current_permission = \App\Models\Permission::query()->where('name', $action['as'])->first();
+            view()->share('current_permission', $current_permission);
+            return $next($request);
         }
         return $next($request);
     }
@@ -42,11 +42,15 @@ class Permission
         if (session()->has($key)) {
             $list = session($key);
         } else {
-            $urls = auth('admin')->user()->getAllPermissions()->pluck('name');
-            $list = Menu::query()->whereIn('url', $urls)->with('parent')->get();
-            foreach ($list as $item) {
-                if ($item->pid && $list->where('id', $item->pid)->count() == 0) {
-                    $list->push($item->parent);
+            if (config('app.debug')) {
+                $list = Menu::query()->with('parent')->get();
+            } else {
+                $urls = auth('admin')->user()->getAllPermissions()->pluck('name');
+                $list = Menu::query()->whereIn('url', $urls)->with('parent')->get();
+                foreach ($list as $item) {
+                    if ($item->pid && $list->where('id', $item->pid)->count() == 0) {
+                        $list->push($item->parent);
+                    }
                 }
             }
             session([$key => $list]);

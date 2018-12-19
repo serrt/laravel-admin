@@ -98,27 +98,22 @@ class UsersController extends Controller
         }
 
         // 更新角色
-        if ($request->filled('roles')) {
+        if ($request->has('roles')) {
             $user->syncRoles($request->input('roles'));
-            // if (auth('admin')->id() == $user->id) {
-            //     // 清空权限缓存
-            //     Cache::forget('spatie.permission.cache');
-            // }
+             if (auth('admin')->id() == $user->id) {
+                 // 清空权限缓存
+                 Cache::forget('spatie.permission.cache');
+                 // 清空菜单缓存
+                 Cache::forget(PermissionMiddleware::MENU_CACHE_KEY);
+             }
         }
 
         // 更新权限
-        if ($request->filled('permissions')) {
+        if ($request->has('permissions')) {
             $user->syncPermissions($request->input('permissions'));
             if (auth('admin')->id() == $user->id) {
                 // 清空权限缓存
                 Cache::forget('spatie.permission.cache');
-            }
-        }
-
-        // 更新菜单
-        if ($request->filled('menus')) {
-            $user->menus()->sync($request->input('menus'));
-            if (auth('admin')->id() == $user->id) {
                 // 清空菜单缓存
                 Cache::forget(PermissionMiddleware::MENU_CACHE_KEY);
             }

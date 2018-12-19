@@ -59,7 +59,7 @@ class RolesController extends Controller
 
         $role->update($request->all());
 
-        if ($request->filled('permissions')) {
+        if ($request->has('permissions')) {
             $role->syncPermissions($request->input('permissions'));
         }
 

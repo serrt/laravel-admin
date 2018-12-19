@@ -9,6 +9,7 @@
         <form action="{{route('admin.user.update',$user)}}" class="form-horizontal validate" method="post">
             {{csrf_field()}}
             {{method_field('put')}}
+            <input type="hidden" name="roles" value="">
             <div class="form-group">
                 <label for="select2" class="control-label col-md-2">角色</label>
                 <div class="col-md-8 btn-group">
