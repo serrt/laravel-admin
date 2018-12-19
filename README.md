@@ -47,8 +47,3 @@ DB_PASSWORD=secret
 
 - 权限缓存问题
 
-### component.tree
-
-- 无限级组件的封装, View: `admin.menus.tree`
-
-
