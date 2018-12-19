@@ -97,4 +97,6 @@ return [
      */
 
     'display_permission_in_exception' => true,
+
+    'debug' => env('PERMISSION_DEBUG', false)
 ];

@@ -26,7 +26,7 @@ class Permission
         $menus = $this->cacheMenus();
         view()->share(self::MENU_CACHE_KEY, $menus);
         if (isset($action['as'])) {
-            if (!$user->can($action['as']) && !config('app.debug')) {
+            if (!$user->can($action['as']) && !config('permission.debug')) {
                 throw UnauthorizedException::forPermissions([$action['as']]);
             }
             $current_permission = \App\Models\Permission::query()->where('name', $action['as'])->first();
@@ -42,7 +42,7 @@ class Permission
         if (session()->has($key)) {
             $list = session($key);
         } else {
-            if (config('app.debug')) {
+            if (config('permission.debug')) {
                 $list = Menu::query()->with('parent')->get();
             } else {
                 $urls = auth('admin')->user()->getAllPermissions()->pluck('name');
