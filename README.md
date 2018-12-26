@@ -46,6 +46,7 @@ DB_PASSWORD=secret
 ### [laravel-permission](https://github.com/spatie/laravel-permission)
 
 - 权限缓存问题
+- 执行 `php artisan db:seed --class=PermissionsTableSeeder` 时, 清空缓存的 `Session` 菜单
 
 ### 后台菜单管理
 

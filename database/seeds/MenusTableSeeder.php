@@ -27,14 +27,12 @@ class MenusTableSeeder extends Seeder
             ['name' => '网站', 'pid' => 0, 'key' => 'fa fa-globe', 'url' => null, 'children' => [
                 ['name' => '字典类型', 'key' => 'fa fa-key', 'url' => 'admin.keywords_type.index'],
                 ['name' => '字典', 'key' => 'fa fa-key', 'url' => 'admin.keywords.index']
-            ]],
+            ]]
         ];
         $list = $this->getMenu($menus, 0);
 
         DB::table('menus')->truncate();
         DB::table('menus')->insert($list);
-        // 清空菜单缓存
-        Cache::forget(\App\Http\Middleware\Permission::MENU_CACHE_KEY);
     }
 
     protected $index = 1;

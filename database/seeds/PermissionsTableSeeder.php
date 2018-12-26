@@ -15,7 +15,7 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         // 清空权限缓存
-        app()['cache']->forget('spatie.permission.cache');
+        Cache::forget('spatie.permission.cache');
 
         // 清空已有的权限
         $tableNames = config('permission.table_names');
@@ -81,5 +81,7 @@ class PermissionsTableSeeder extends Seeder
 
         $user = AdminUser::first();
         $user->assignRole($role);
+
+        $this->call(MenusTableSeeder::class);
     }
 }

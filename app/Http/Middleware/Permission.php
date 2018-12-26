@@ -6,6 +6,7 @@ use App\Models\Menu;
 use Closure;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Exceptions\UnauthorizedException;
+use Illuminate\Support\Facades\Session;
 
 class Permission
 {
