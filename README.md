@@ -33,7 +33,7 @@ DB_PASSWORD=secret
 
 ### 后台权限
 
-- 加入权限 [laravel-permission](https://github.com/spatie/laravel-permission)
+- 加入权限 [laravel-permission](https://github.com/spatie/laravel-permission), 增加 **权限调试模式(不验证权限)**, 修改 `.env` 文件 `PERMISSION_DEBUG=true`
 - 添加管理员菜单, `php artisan db:seed --class=MenusTableSeeder`, 并将全部菜单赋予**第一个**管理员
 - 根据后台路由(`admin.php`) 添加权限, `php artisan db:seed --class=PermissionsTableSeeder`, 并将全部权限赋予`administer`
 
