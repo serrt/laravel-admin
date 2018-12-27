@@ -1,7 +1,7 @@
 // 网站 csrf_token
 var token = $("meta[name='csrf-token']").attr('content');
 // 通用的 select2 config
-function selectConfig(data) {
+function selectConfig(data, multiple) {
     var config = {
         allowClear: true,
         placeholder: '请选择',
@@ -33,7 +33,11 @@ function selectConfig(data) {
         }
     };
     if (data) {
-        config.data = [data];
+        if (multiple && data.length !== undefined) {
+            config.data = data;
+        } else {
+            config.data = [data];
+        }
     }
     return config;
 }
@@ -226,10 +230,18 @@ $(function () {
     $.fn.select2.defaults.set('theme', 'bootstrap');
     $('.select2').each(function () {
         var data = $(this).data('json');
-        var config_public = selectConfig(data);
+        var config_public = selectConfig(data, $(this).attr('multiple'));
         $(this).select2(config_public);
         if (config_public.data) {
-            $(this).val([data.id]).trigger('change');
+            if ($(this).attr('multiple') && config_public.data.length !== undefined) {
+                var selected = [];
+                for (var i in config_public.data) {
+                    selected.push(config_public.data[i].id);
+                }
+                $(this).val(selected).trigger('change');
+            } else {
+                $(this).val([data.id]).trigger('change');
+            }
         }
     });
 
