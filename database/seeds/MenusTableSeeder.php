@@ -26,7 +26,7 @@ class MenusTableSeeder extends Seeder
             ]],
             ['name' => '网站', 'pid' => 0, 'key' => 'fa fa-globe', 'url' => null, 'children' => [
                 ['name' => '字典类型', 'key' => 'fa fa-key', 'url' => 'admin.keywords_type.index'],
-                ['name' => '字典', 'key' => 'fa fa-key', 'url' => 'admin.keywords.index']
+                ['name' => '字典', 'key' => 'fa fa-key', 'url' => 'admin.keywords.index'],
             ]]
         ];
         $list = $this->getMenu($menus, 0);

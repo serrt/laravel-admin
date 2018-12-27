@@ -7,6 +7,9 @@ use App\Models\Region;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Middleware\Permission;
+use Cache;
+use Session;
 
 class IndexController extends Controller
 {
@@ -18,6 +21,17 @@ class IndexController extends Controller
     public function index()
     {
         return view('admin.index.home');;
+    }
+
+    public function refresh()
+    {
+        // 清除权限缓存
+        Cache::forget('spatie.permission.cache');
+
+        // 清除菜单缓存
+        Session::forget(Permission::MENU_CACHE_KEY);
+
+        return back()->with('flash_message', '清除成功');
     }
 
     public function table(Request $request)

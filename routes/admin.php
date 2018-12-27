@@ -12,6 +12,7 @@
 Route::group(['middleware' => ['auth:admin', 'permission']], function () {
     
     Route::redirect('', '/admin/index');
+    Route::any('refresh', ['uses' => 'IndexController@refresh']);
 
     Route::get('index', ['uses'=>'IndexController@index', 'as'=>'admin.index.index']);
     Route::get('table', ['uses'=>'IndexController@table', 'as'=>'admin.index.table']);

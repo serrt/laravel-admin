@@ -35,7 +35,11 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <!-- 日志 -->
-                        <a href="{{route('log-viewer::dashboard')}}" target="_blank"><i class="fa fa-flag"></i></a>
+                        <a href="{{route('log-viewer::dashboard')}}" target="_blank" title="查看系统日志"><i class="fa fa-flag"></i></a>
+                    </li>
+                    <li>
+                        <!-- 日志 -->
+                        <a href="/admin/refresh" title="清除菜单缓存"><i class="fa fa-refresh"></i></a>
                     </li>
                     <li>
                         <!-- 打开右边隐藏的部分 -->
