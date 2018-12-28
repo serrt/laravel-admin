@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3>多文件管理</h3>
+                    <div class="box-title">多文件管理</div>
                 </div>
                 <div class="box-body">
                     <form action="" class="form-horizontal" role="form">

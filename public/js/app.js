@@ -89,6 +89,16 @@ $(function () {
         language: 'zh-CN'
     });
 
+    $('.input-daterange').datepicker({
+        format: 'yyyy-mm-dd',
+        language: 'zh-CN',
+        minViewMode: 'days',
+        enableOnReadonly: false,
+    });
+    $('.input-daterange input').each(function() {
+        $(this).datepicker('clearDates');
+    });
+
     // Jquery 表单验证
     $.extend($.validator.messages, {
         required: "这是必填字段",

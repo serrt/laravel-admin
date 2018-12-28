@@ -57,7 +57,10 @@ class IndexController extends Controller
     {
         $img_url = 'http://qiniu.abcdefg.fun/act-pic3.png';
         $imgs_url = 'http://qiniu.abcdefg.fun/act-pic3.png,http://qiniu.abcdefg.fun/act-pic4.png';
-        return view('admin.index.form', compact('img_url', 'imgs_url'));
+
+        $city = RegionResource::make(Region::query()->first());
+        $cities = RegionResource::collection(Region::query()->limit(3)->get());
+        return view('admin.index.form', compact('img_url', 'imgs_url', 'city', 'cities'));
     }
 
     public function ajax()
