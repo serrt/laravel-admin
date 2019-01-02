@@ -140,11 +140,11 @@
             </div>
         </div>
         <div class="box-body">
-            <form action="" class="form-horizontal" role="form" autocomplete="off">
+            <form action="" class="form-horizontal validate" role="form" autocomplete="off">
                 <div class="form-group">
                     <label class="col-md-2 control-label">File</label>
                     <div class="col-md-8">
-                        <input type="file" class="form-control file-input">
+                        <input type="file" class="form-control file-input" data-rule-required="true">
                         <p class="help-block text-muted">添加 <code>class="file-input"</code></p>
                     </div>
                 </div>
@@ -153,6 +153,12 @@
                     <div class="col-md-8">
                         <input type="file" class="form-control file-input" data-initial-preview="{{$imgs_url}}">
                         <p class="help-block text-muted">添加属性 <code>data-initial-preview="图片地址,图片地址"</code></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8 col-lg-offset-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="javascript:history.back();" class="btn btn-default">返回</a>
                     </div>
                 </div>
             </form>

@@ -26,7 +26,7 @@ DB_PASSWORD=secret
 5. `php artisan migrate --seed` 数据库迁移和填充
 6. 数据库迁移后, 默认的后台用户`username: admin, password: 123456`, 也可以自己后台用户`php artisan generate:admin username password`
 7. `bootstrap/cache` 和 `storage/` 两个目录需要配置**读写**权限
-8. 本地文件上传, `php artisan storage:link` 或者手动创建软连 `ln -s public/storage storage/app/public`
+8. 本地文件上传, `php artisan storage:link` 或者手动创建软连 `ln -s /项目目录/storage/app/public public/storage`
 9. 配置文件 `config('permission.debug')` 或者 `env('PERMISSION_DEBUG')`; 为 `true` 时, 不验证权限, `false` 时, 强制验证权限
 
 ## Feature

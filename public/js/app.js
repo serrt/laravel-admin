@@ -149,10 +149,12 @@ $(function () {
             },
             // 错误元素出现的位置
             errorPlacement: function(error, element) {
-                error.addClass('help-block');
+                error.addClass('text-danger');
                 if (element.parent().hasClass('input-group')) {
                     element.parent().after(error);
-                } else {
+                } else if (element.attr('type') === 'file') {
+                    element.parents('.file-input').after(error);
+                }  else {
                     error.appendTo(element.parent());
                 }
             },
