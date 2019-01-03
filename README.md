@@ -39,10 +39,6 @@ DB_PASSWORD=secret
 
 ## TODO
 
-### [拖动排序](https://github.com/RubaXa/Sortable)
-
-- 菜单的拖动排序
-
 ### [laravel-permission](https://github.com/spatie/laravel-permission)
 
 - 权限缓存问题
@@ -51,3 +47,12 @@ DB_PASSWORD=secret
 ### 后台菜单管理
 
 - 根据权限查询出菜单, 同时查询出菜单的父级
+- [拖动排序](https://github.com/RubaXa/Sortable)
+
+### [file-input](http://plugins.krajee.com/file-input)
+
+- 多文件管理
+
+### [select2](https://select2.org)
+
+- 异步加载数据, 在多选(`multiple`)的情况下, 重复选择相同项, 没有删除**选择的项**
