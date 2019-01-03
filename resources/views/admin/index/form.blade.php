@@ -132,7 +132,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">Ajax Multiple Selected</label>
                     <div class="col-md-8">
-                        <select name="" class="form-control select2" multiple data-json="{{json_encode($cities)}}" data-ajax-url="{{route('api.web.city', ['level' => 1])}}">
+                        <select name="select2-ajax-multiple-selected" id="select2-ajax-multiple-selected" class="form-control select2" multiple data-json="{{json_encode($cities)}}" data-ajax-url="{{route('api.web.city', ['level' => 1])}}">
                             <option value=""></option>
                         </select>
                         <p class="help-block text-muted">
@@ -179,3 +179,23 @@
         </div>
     </div>
 @endsection
+@section('script')
+<script type="text/javascript">
+    $(function () {
+        $('.select2[data-ajax-url]').on('select2:unselecting', function (e) {
+            var item = e.params.args.data;
+            var data = $(this).select2('data');
+            var val = [];
+            for (var i in data) {
+                if (item.id != data[i].id) {
+                    val.push(data[i].id);
+                }
+            }
+            $(this).val(val).trigger('change');
+            return true;
+        });
+    })
+</script>
+@endsection
+
+

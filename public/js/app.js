@@ -264,6 +264,20 @@ $(function () {
         }
     });
 
+    // 监听 select2 删除事件, 去掉删除元素
+    $('.select2[data-ajax-url]').on('select2:unselecting', function (e) {
+        var item = e.params.args.data;
+        var data = $(this).select2('data');
+        var val = [];
+        for (var i in data) {
+            if (item.id != data[i].id) {
+                val.push(data[i].id);
+            }
+        }
+        $(this).val(val).trigger('change');
+        return true;
+    });
+
     // file-input 初始化
     $('.file-input').fileinput({
         language: 'zh',
