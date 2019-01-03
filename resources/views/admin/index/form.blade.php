@@ -99,7 +99,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">Ajax</label>
                     <div class="col-md-8">
-                        <select name="" class="form-control select2" data-ajax-url="{{route('api.web.city')}}">
+                        <select name="" class="form-control select2" data-ajax-url="{{route('api.web.city', ['level' => 1])}}">
                             <option value=""></option>
                         </select>
                         <p class="help-block text-muted">
@@ -110,7 +110,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">Ajax Selected</label>
                     <div class="col-md-8">
-                        <select name="" class="form-control select2" data-json="{{json_encode($city)}}" data-ajax-url="{{route('api.web.city')}}">
+                        <select name="" class="form-control select2" data-json="{{json_encode($city)}}" data-ajax-url="{{route('api.web.city', ['level' => 1])}}">
                             <option value=""></option>
                         </select>
                         <p class="help-block text-muted">
@@ -121,7 +121,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">Ajax Multiple</label>
                     <div class="col-md-8">
-                        <select name="" class="form-control select2" multiple data-ajax-url="{{route('api.web.city')}}">
+                        <select name="" class="form-control select2" multiple data-ajax-url="{{route('api.web.city', ['level' => 1])}}">
                             <option value=""></option>
                         </select>
                         <p class="help-block text-muted">
@@ -132,7 +132,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">Ajax Multiple Selected</label>
                     <div class="col-md-8">
-                        <select name="" class="form-control select2" multiple data-json="{{json_encode($cities)}}" data-ajax-url="{{route('api.web.city')}}">
+                        <select name="" class="form-control select2" multiple data-json="{{json_encode($cities)}}" data-ajax-url="{{route('api.web.city', ['level' => 1])}}">
                             <option value=""></option>
                         </select>
                         <p class="help-block text-muted">

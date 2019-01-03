@@ -52,6 +52,10 @@ class WebController extends Controller
             $query->where('name', 'like', '%' . $request->input('name', $request->input('key')) . '%');
         }
 
+        if ($request->filled('level')) {
+            $query->where('level', $request->input('level'));
+        }
+
         $list = $query->paginate();
         return RegionResource::collection($list)->additional(['code' => Response::HTTP_OK, 'message' => '']);
     }
