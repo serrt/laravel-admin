@@ -85,6 +85,20 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">Example</label>
                     <div class="col-md-8">
+                        <select name="select2[]" class="form-control select2" multiple="multiple">
+                            <option value="1">1</option>
+                            <option value="2" selected="selected">2</option>
+                            <option value="3" selected="selected">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <p class="help-block text-muted">
+                            添加 <code>class="select2"</code>, <code>multiple</code> 属性表示允许多选, <code>option</code> 标签添加 <code>selected</code>属性表示选中状态
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Ajax</label>
+                    <div class="col-md-8">
                         <select name="" class="form-control select2" data-ajax-url="{{route('api.web.city')}}">
                             <option value=""></option>
                         </select>
@@ -94,7 +108,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Example Selected</label>
+                    <label class="col-md-2 control-label">Ajax Selected</label>
                     <div class="col-md-8">
                         <select name="" class="form-control select2" data-json="{{json_encode($city)}}" data-ajax-url="{{route('api.web.city')}}">
                             <option value=""></option>
@@ -105,7 +119,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Example Multiple</label>
+                    <label class="col-md-2 control-label">Ajax Multiple</label>
                     <div class="col-md-8">
                         <select name="" class="form-control select2" multiple data-ajax-url="{{route('api.web.city')}}">
                             <option value=""></option>
@@ -116,7 +130,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Example Multiple Selected</label>
+                    <label class="col-md-2 control-label">Ajax Multiple Selected</label>
                     <div class="col-md-8">
                         <select name="" class="form-control select2" multiple data-json="{{json_encode($cities)}}" data-ajax-url="{{route('api.web.city')}}">
                             <option value=""></option>
