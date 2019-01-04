@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="box-body">
-            <form action="" class="form-horizontal" role="form" autocomplete="off">
+            <form action="" class="form-horizontal validate" role="form" autocomplete="off">
                 <div class="form-group">
                     <label for="" class="col-md-2 control-label">Input</label>
                     <div class="col-md-8">
