@@ -45,6 +45,9 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+            if ($request->ajax()) {
+                return response()->json(['message' => $exception->getMessage()], 403);
+            }
             return response()->view('admin.errors.'.$exception->getStatusCode(), compact('exception'));
         }
 

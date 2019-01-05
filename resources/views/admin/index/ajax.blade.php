@@ -8,7 +8,7 @@
             <form action="" class="form-horizontal" role="form">
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="file" name="files2" class="form-control file-input3" data-upload-url="{{route('api.web.upload')}}" data-initial-preview="{{$imgs_url}}" multiple>
+                        <input type="file" name="file" class="form-control file-input3" multiple>
                     </div>
                 </div>
             </form>
@@ -18,13 +18,46 @@
 @section('script')
     <script>
         $(function () {
-            $('.file-input3').fileinput({
+            var upload_url = "{{route('admin.index.upload')}}";
+            var imgs = JSON.parse('{!! json_encode($imgs_url) !!}');
+            var preview_config = [], preview = [];
+            for (var i in imgs) {
+                var item = imgs[i];
+                var item_split = item.split('/');
+                preview_config.push({
+                    key: i,
+                    caption: item_split[item_split.length - 1],
+                    type: 'image',
+                    fileType: 'image',
+                    url: upload_url,
+                });
+                preview.push(item);
+            }
+            var element = $('.file-input3');
+            element.fileinput({
                 language: 'zh',
                 overwriteInitial: false,
+
+                initialPreview: preview,
                 initialPreviewAsData: true,
-                showAjaxErrorDetails: false,
-                initialPreviewDelimiter: ',',
-                browseClass: 'btn bg-purple'
+                initialPreviewConfig: preview_config,
+
+                uploadUrl: upload_url,
+
+                removeFromPreviewOnError: true,
+                browseLabel: '选择',
+                browseClass: 'btn bg-purple',
+            }).on('fileuploaded', function (event, data, previewId, index) {
+                console.log('fileuploaded');
+            }).on('filesorted', function (event, params) {
+                console.log('File sorted');
+                var data = [];
+                for (var i in params.stack) {
+                    data.push(params.stack[i].key);
+                }
+                $.post(upload_url, {sort: data}).then(function (res) {
+                    console.log(res)
+                });
             });
         })
     </script>

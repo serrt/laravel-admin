@@ -20,7 +20,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('admin.index.home');;
+        return view('admin.index.home');
     }
 
     public function refresh()
@@ -65,20 +65,44 @@ class IndexController extends Controller
 
     public function ajax()
     {
-        $imgs_url = 'http://qiniu.abcdefg.fun/act-pic3.png,http://qiniu.abcdefg.fun/act-pic4.png';
+        if (!session()->has('imgs_url')) {
+            session(['imgs_url' => ['http://qiniu.abcdefg.fun/act-pic3.png', 'http://qiniu.abcdefg.fun/act-pic4.png']]);
+        }
+        $imgs_url = session()->get('imgs_url');
         return view('admin.index.ajax', compact('imgs_url'));
     }
 
-    public function formUpload(Request $request)
+    public function upload(Request $request)
     {
-        // 获取上传的文件
-        $file = $request->file('file');
-        if ($file) {
-            // 保存文件
-            $file = $file->store('uploads');
-            // 获取文件全路径
-            $fileUrl = Storage::url($file);
-            dump($fileUrl);
+        $imgs_url = session()->get('imgs_url');
+
+        // 上传新文件
+        if ($request->hasFile('file')) {
+            $path = $request->input('path', 'file-input/'.date('Y-m-d'));
+            $file_url = Storage::url($request->file('file')->store($path));
+
+            array_push($imgs_url, $file_url);
         }
+
+        // 删除已有的文件
+        if ($request->has('key')) {
+            $key = $request->input('key');
+            if (isset($imgs_url[$key])) {
+                unset($imgs_url[$key]);
+            }
+        }
+
+        // 排序文件
+        if ($request->has('sort')) {
+            $sort = $request->input('sort');
+            $new = [];
+            foreach ($sort as $key) {
+                $new[$key] = $imgs_url[$key];
+            }
+            $imgs_url = $new;
+        }
+
+        session(['imgs_url' => $imgs_url]);
+        return $this->json($imgs_url);
     }
 }
