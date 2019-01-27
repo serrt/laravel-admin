@@ -56,3 +56,12 @@ DB_PASSWORD=secret
 ### [select2](https://select2.org)
 
 - 异步加载数据, 在多选(`multiple`)的情况下, 重复选择相同项, 没有删除**选择的项**
+
+## Releases
+
+### 2019-01-27
+
+- 升级 `laravel/framework` 至 `5.7.*`
+- 删除扩展 `barryvdh/laravel-debugbar`, [文档地址](https://github.com/barryvdh/laravel-ide-helper)
+- 添加扩展 `laravel/telescope`, [文档地址](https://laravel.com/docs/5.7/telescope)
+
