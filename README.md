@@ -1,5 +1,6 @@
 # admin-iframe
-Laravel + AdminlLte + Iframe
+
+构建后台项目
 
 ## 项目要求
 
@@ -59,9 +60,18 @@ DB_PASSWORD=secret
 
 ## Releases
 
-### 2019-01-27
+### 1.0
+
+- 框架 [laravel/framework:5.6](https://learnku.com/docs/laravel/5.6)
+- 扩展 [spatie/laravel-permission](https://github.com/spatie/laravel-permission)
+- 扩展 [arcanedev/log-viewer](https://github.com/ARCANEDEV/LogViewer)
+- 扩展 [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
+- 扩展 [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
+- UI [adminlte:2.3.8](https://adminlte.io)
+
+### 2.0(beta)
 
 - 升级 `laravel/framework` 至 `5.7.*`
-- 删除扩展 `barryvdh/laravel-debugbar`, [文档地址](https://github.com/barryvdh/laravel-ide-helper)
 - 添加扩展 `laravel/telescope`, [文档地址](https://laravel.com/docs/5.7/telescope)
+- 删除扩展 `barryvdh/laravel-debugbar`, [文档地址](https://github.com/barryvdh/laravel-ide-helper)
 
