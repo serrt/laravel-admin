@@ -55,8 +55,8 @@ class IndexController extends Controller
 
     public function form()
     {
-        $img_url = 'http://qiniu.abcdefg.fun/act-pic3.png';
-        $imgs_url = 'http://qiniu.abcdefg.fun/act-pic3.png,http://qiniu.abcdefg.fun/act-pic4.png';
+        $img_url = 'https://qiniu.abcdefg.fun/act-pic3.png';
+        $imgs_url = 'https://qiniu.abcdefg.fun/act-pic3.png,http://qiniu.abcdefg.fun/act-pic4.png';
 
         $city = RegionResource::make(Region::query()->where('level', 1)->first());
         $cities = RegionResource::collection(Region::query()->where('level', 1)->limit(3)->get());
@@ -66,7 +66,7 @@ class IndexController extends Controller
     public function ajax()
     {
         if (!session()->has('imgs_url')) {
-            session(['imgs_url' => ['http://qiniu.abcdefg.fun/act-pic3.png', 'http://qiniu.abcdefg.fun/act-pic4.png']]);
+            session(['imgs_url' => ['https://qiniu.abcdefg.fun/act-pic3.png', 'https://qiniu.abcdefg.fun/act-pic4.png']]);
         }
         $imgs_url = session()->get('imgs_url');
         return view('admin.index.ajax', compact('imgs_url'));
