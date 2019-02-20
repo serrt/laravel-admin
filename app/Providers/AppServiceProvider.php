@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
-// use Laravel\Telescope\TelescopeServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \Illuminate\Pagination\LengthAwarePaginator::defaultView('vendor.pagination.default');
+
+        $this->app['request']->server->set('HTTPS', str_contains(config('app.url'), 'https://'));
     }
 
     /**
@@ -25,8 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // if ($this->app->isLocal()) {
-        //     $this->app->register(TelescopeServiceProvider::class);
-        // }
+
     }
 }
