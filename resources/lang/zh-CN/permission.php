@@ -12,13 +12,13 @@ return [
     |
     */
 
-    'admin.index' => '后台',
-    'admin.role' => '后台角色',
-    'admin.user' => '后台管理员',
-    'admin.keywords_type' => '后台字典类型',
-    'admin.keywords' => '后台字典',
-    'admin.menu' => '后台菜单',
-    'admin.permission' => '后台权限',
+    'admin.index' => '首页',
+    'admin.role' => '角色',
+    'admin.user' => '管理员',
+    'admin.keywords_type' => '字典类型',
+    'admin.keywords' => '字典',
+    'admin.menu' => '菜单',
+    'admin.permission' => '权限',
 
     'home' => '首页',
     'table' => '表格',

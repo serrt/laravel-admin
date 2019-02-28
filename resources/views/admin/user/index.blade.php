@@ -24,7 +24,7 @@
             </form>
         </div>
 
-        <div class="box-body table-responsive" style="min-height: 350px;">
+        <div class="box-body table-responsive">
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>

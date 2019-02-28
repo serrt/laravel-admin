@@ -154,11 +154,12 @@
             </div>
         </div>
         <div class="box-body">
-            <form action="" class="form-horizontal validate" role="form" autocomplete="off">
+            <form action="{{route('admin.index.upload')}}" class="form-horizontal validate" method="post" enctype="multipart/form-data" role="form" autocomplete="off">
+                {{csrf_field()}}
                 <div class="form-group">
                     <label class="col-md-2 control-label">File</label>
                     <div class="col-md-8">
-                        <input type="file" class="form-control file-input" data-rule-required="true">
+                        <input type="file" class="form-control file-input" name="file" data-rule-required="true">
                         <p class="help-block text-muted">添加 <code>class="file-input"</code></p>
                     </div>
                 </div>

@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use App\Models\Menu;
 use Closure;
-use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Exceptions\UnauthorizedException;
-use Illuminate\Support\Facades\Session;
+use \App\Models\Permission as PermissionModel;
 
 class Permission
 {
@@ -27,10 +26,11 @@ class Permission
         $menus = $this->cacheMenus();
         view()->share(self::MENU_CACHE_KEY, $menus);
         if (isset($action['as'])) {
-            if (!$user->can($action['as']) && !config('permission.debug')) {
+            if (!config('permission.debug') && !$user->can($action['as'])) {
                 throw UnauthorizedException::forPermissions([$action['as']]);
             }
-            $current_permission = \App\Models\Permission::query()->where('name', $action['as'])->first();
+            $current_permission = PermissionModel::findByName($action['as']);
+            $current_permission->parent = PermissionModel::findById($current_permission->pid);
             view()->share('current_permission', $current_permission);
             return $next($request);
         }
@@ -46,7 +46,7 @@ class Permission
             if (config('permission.debug')) {
                 $list = Menu::query()->with('parent')->get();
             } else {
-                $urls = auth('admin')->user()->getAllPermissions()->pluck('name');
+                $urls = PermissionModel::findById(auth('admin')->id())->pluck('name');
                 $list = Menu::query()->whereIn('url', $urls)->with('parent')->get();
                 foreach ($list as $item) {
                     if ($item->pid && $list->where('id', $item->pid)->count() == 0) {

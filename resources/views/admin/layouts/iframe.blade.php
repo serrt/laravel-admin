@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{data_get($current_menu, 'children.0.text', data_get($current_menu, 'text'))}} | {{config('app.name')}}</title>
+    <title>
+        {{isset($current_menu)?data_get($current_menu, 'children.0.text', data_get($current_menu, 'text')):''}} | {{config('app.name')}}
+    </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -123,16 +125,19 @@
         <!-- Content Header (Page header) -->
         @if(isset($current_permission) && isset($current_menu))
         <section class="content-header">
-            <h1>{{$current_permission->display_name}}</h1>
+            <h1>
+                {{$current_permission->display_name}}
+                @if($current_permission->parent)
+                <small>{{$current_permission->parent->display_name}}</small>
+                @endif
+            </h1>
             <ol class="breadcrumb">
                 <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> {{$current_menu['text']}}</a></li>
-                @if(isset($current_menu['children']))
-                @foreach($current_menu['children'] as $item)
+                @foreach(data_get($current_menu, 'children', []) as $item)
                     @if($item['active'])
                         <li class="active">{{$item['text']}}</li>
                     @endif
                 @endforeach
-                @endif
             </ol>
         </section>
         @endif

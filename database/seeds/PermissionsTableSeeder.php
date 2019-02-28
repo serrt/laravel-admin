@@ -59,17 +59,15 @@ class PermissionsTableSeeder extends Seeder
             $index2=1;
             $permissions->push($permission);
             foreach ($item1 as $value) {
-                $explode_value = explode('.',$value);
-                $need_trans = 'permission.'.$explode_value[2];
+                $need_trans = 'permission.'.$value;
                 $trans = __($need_trans);
                 if ($trans == $need_trans) {
-                    $trans = __('permission.'.$value);
+                    $trans = __('permission.' . explode('.', $trans)[3]);
                 }
-                $tran = $trans.'-'.$permission->display_name;
                 $sub_permission = Permission::create([
                     'guard_name' => $guard,
                     'name' => $value,
-                    'display_name' => $tran,
+                    'display_name' => $trans,
                     'pid' => $permission->id,
                 ]);
                 $index2++;
