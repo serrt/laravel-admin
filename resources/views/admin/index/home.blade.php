@@ -81,6 +81,13 @@
                         </a>
                     </li>
                     <li class="list-group-item">
+                        <a href="https://github.com/barryvdh/laravel-debugbar" target="_blank">
+                            <b class="text-yellow">barryvdh/laravel-debugbar</b>&nbsp;
+                            <span class="label label-info">^3.2</span>
+                            <span class="label label-default">dev</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a href="https://github.com/Xethron/migrations-generator" target="_blank">
                             <b class="text-yellow">xethron/migrations-generator</b>&nbsp;
                             <span class="label label-info">^2.0</span>
