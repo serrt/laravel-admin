@@ -36,13 +36,12 @@ DB_PASSWORD=secret
 
 - 加入权限 [laravel-permission](https://github.com/spatie/laravel-permission), 增加 **权限调试模式(不验证权限)**, 修改 `.env` 文件 `PERMISSION_DEBUG=true`
 - 添加管理员菜单, `php artisan db:seed --class=MenusTableSeeder`, 并将全部菜单赋予**第一个**管理员
-- 根据后台路由(`admin.php`) 添加权限, `php artisan db:seed --class=PermissionsTableSeeder`, 并将全部权限赋予`administer`
+- 根据后台路由(`admin.php`) 添加权限, `php artisan db:seed --class=PermissionsTableSeeder`, 并将全部权限赋予`administer`, 同时更新菜单(需要重新登陆才能看到效果)
 
 ## TODO
 
 ### [laravel-permission](https://github.com/spatie/laravel-permission)
 
-- 权限缓存问题
 - 执行 `php artisan db:seed --class=PermissionsTableSeeder` 时, 清空缓存的 `Session` 菜单
 
 ### 后台菜单管理
@@ -55,8 +54,6 @@ DB_PASSWORD=secret
 - 多文件管理
 
 ### [select2](https://select2.org)
-
-- 异步加载数据, 在多选(`multiple`)的情况下, 重复选择相同项, 没有删除**选择的项**
 
 ## Releases
 
@@ -73,5 +70,11 @@ DB_PASSWORD=secret
 
 - 升级 `laravel/framework` 至 `5.7.*` 
 - 添加扩展 `laravel/telescope`, [文档地址](https://laravel.com/docs/5.7/telescope)
-- 删除扩展 `barryvdh/laravel-debugbar`, [文档地址](https://github.com/barryvdh/laravel-ide-helper)
+- 删除扩展 `barryvdh/laravel-debugbar`, [文档地址](https://github.com/barryvdh/laravel-debugbar)
 
+### 2.1
+
+- 还原扩展 `barryvdh/laravel-debugbar` (还是这个用起习惯 :smile:), [文档地址](https://github.com/barryvdh/laravel-debugbar)
+- 添加权限缓存, 缓存页面的 `Title` 部分和 `breadcrumb` 部分 
+- 修改权限初始化的翻译文件
+- 在页面头部添加 **手动清除当前用户的菜单缓存, 权限缓存** 按钮
