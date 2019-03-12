@@ -25,6 +25,10 @@
                         <span class="pull-right">{{PHP_VERSION}}</span>
                     </li>
                     <li class="list-group-item">
+                        <b>Mysql</b>
+                        <span class="pull-right">{{data_get(DB::select('select version() as version'), '0.version')}}</span>
+                    </li>
+                    <li class="list-group-item">
                         <b>Laravel</b>
                         <span class="pull-right">{{\Illuminate\Foundation\Application::VERSION}}</span>
                     </li>
