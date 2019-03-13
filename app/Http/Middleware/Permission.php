@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Menu;
 use Closure;
 use Spatie\Permission\Exceptions\UnauthorizedException;
+use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 use \App\Models\Permission as PermissionModel;
 
 class Permission
@@ -21,18 +22,21 @@ class Permission
      */
     public function handle($request, Closure $next)
     {
-        $action = $request->route()->action;
-        $user = auth('admin')->user();
-        $menus = $this->cacheMenus();
-        view()->share(self::MENU_CACHE_KEY, $menus);
-        if (isset($action['as'])) {
-            if (!config('permission.debug') && !$user->can($action['as'])) {
-                throw UnauthorizedException::forPermissions([$action['as']]);
+        try {
+            $action = $request->route()->action;
+            $user = auth('admin')->user();
+            $menus = $this->cacheMenus();
+            view()->share(self::MENU_CACHE_KEY, $menus);
+            if (isset($action['as'])) {
+                if (!config('permission.debug') && !$user->can($action['as'])) {
+                    throw UnauthorizedException::forPermissions([$action['as']]);
+                }
+                $current_permission = PermissionModel::findByName($action['as']);
+                $current_permission->parent = PermissionModel::findById($current_permission->pid);
+                view()->share('current_permission', $current_permission);
             }
-            $current_permission = PermissionModel::findByName($action['as']);
-            $current_permission->parent = PermissionModel::findById($current_permission->pid);
-            view()->share('current_permission', $current_permission);
-            return $next($request);
+        } catch (PermissionDoesNotExist $exception) {
+
         }
         return $next($request);
     }
