@@ -20,6 +20,7 @@ class PermissionResource extends JsonResource
             'display_name' => $this->display_name,
             'text' => $this->display_name,
             'pid' => $this->pid,
+            'text' => $this->display_name.'-'.$this->name
         ];
         return $data;
     }

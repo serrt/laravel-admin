@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Resources\PermissionResource;
 use App\Models\Menu;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,13 @@ class MenusController extends Controller
             'name' => 'required',
         ]);
 
-        Menu::create($request->all());
+        $data = $request->all();
+
+        if ($request->filled('permission_id')) {
+            $data['permission_name'] = Permission::findOrFail($request->input('permission_id'))->name;
+        }
+
+        Menu::create($data);
 
         return redirect(route('admin.menu.index'));
     }
@@ -36,7 +43,12 @@ class MenusController extends Controller
     {
         $menu = Menu::findOrFail($id);
 
-        return view('admin.menu.edit', compact('menu'));
+        $permission = null;
+        if ($menu->permission_name) {
+            $permission = PermissionResource::make($menu->permission);
+        }
+
+        return view('admin.menu.edit', compact('menu', 'permission'));
     }
 
     public function update(Request $request, $id)
@@ -45,6 +57,13 @@ class MenusController extends Controller
 
         $data = $request->all();
         $data['pid'] = $request->input('pid', 0);
+
+        if ($request->filled('permission_id')) {
+            $data['permission_name'] = Permission::findOrFail($request->input('permission_id'))->name;
+        } else {
+            $data['permission_name'] = null;
+        }
+
         $permission->update($data);
 
         return redirect(route('admin.menu.index'))->with('flash_message', '修改成功');

@@ -43,6 +43,7 @@ DB_PASSWORD=secret
 ### [laravel-permission](https://github.com/spatie/laravel-permission)
 
 - 执行 `php artisan db:seed --class=PermissionsTableSeeder` 时, 清空缓存的 `Session` 菜单
+- 初始化用户拥有的菜单, 根据权限判断
 
 ### 后台菜单管理
 
@@ -52,8 +53,6 @@ DB_PASSWORD=secret
 ### [file-input](http://plugins.krajee.com/file-input)
 
 - 多文件管理
-
-### [select2](https://select2.org)
 
 ## Releases
 

@@ -26,13 +26,20 @@
                 <label for="inputUrl" class="control-label col-md-2">链接</label>
                 <div class="col-md-8">
                     <input type="text" class="form-control" name="url" id="inputUrl">
+                    <span class="help-block">菜单连接, 例如: admin.index.home, admin/index, admin/index?query=1</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="selectPermission" class="control-label col-md-2">关联权限</label>
+                <div class="col-md-8">
+                    <select name="permission_id" id="selectPermission" class="form-control select2" data-ajax-url="{{route('api.web.permission')}}"></select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputKey" class="control-label col-md-2">key</label>
                 <div class="col-md-8">
                     <input type="text" class="form-control" name="key" id="inputKey">
-                    <span class="help-block">编辑图标, 例如: fa fa-edge, <a href="https://adminlte.io/themes/AdminLTE/pages/UI/icons.html" target="_blank">查看全部图标</a></span>
+                    <span class="help-block">菜单图标, 例如: fa fa-edge, <a href="https://adminlte.io/themes/AdminLTE/pages/UI/icons.html" target="_blank">查看全部图标</a></span>
                 </div>
             </div>
             <div class="form-group">
