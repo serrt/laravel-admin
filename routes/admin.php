@@ -7,8 +7,6 @@
 |
 */
 
-// Route::get('/', ['uses' => 'IndexController@index', 'middleware' => 'auth:admin']);
-
 Route::group(['middleware' => ['auth:admin', 'permission']], function () {
     
     Route::redirect('', '/admin/index');
