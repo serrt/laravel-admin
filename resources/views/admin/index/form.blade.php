@@ -149,8 +149,7 @@
                 <a href="http://plugins.krajee.com/file-input" target="_blank">File input</a>
             </h3>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             </div>
         </div>
         <div class="box-body">
