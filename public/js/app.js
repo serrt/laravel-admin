@@ -1,7 +1,11 @@
 // 网站 csrf_token
 var token = $("meta[name='csrf-token']").attr('content');
 // 通用的 select2 config
-function selectConfig(data, multiple, ajax) {
+function selectConfig(element) {
+    var data = element.data('json');
+    var multiple = element.attr('multiple');
+    var ajax = element.data('ajax-url');
+
     var config = {
         allowClear: true,
         placeholder: '请选择',
@@ -43,7 +47,26 @@ function selectConfig(data, multiple, ajax) {
             config.data = [data];
         }
     }
+
     return config;
+}
+// 获取文件类型
+function fileType(file) {
+    var file_type = 'object';
+    if (file.match(/(xls|xlsx|doc|docx|ppt|pptx)$/i)) {
+        file_type = 'office';
+    } else if (file.match(/(ppt|pptx)$/i)) {
+        file_type = 'ppt';
+    } else if (file.match(/(avi|mpg|mkv|mov|mp4|3gp|webm|wmv|wav)$/i)) {
+        file_type = 'video';
+    } else if (file.match(/(mp3)$/i)) {
+        file_type = 'audio';
+    } else if (file.match(/(jpg|jpeg|gif|png|svg)$/i)) {
+        file_type = 'image';
+    } else if (file.match(/(pdf)$/i)) {
+        file_type = 'pdf'
+    }
+    return file_type;
 }
 $(function () {
     // 切换皮肤
@@ -247,7 +270,7 @@ $(function () {
     $.fn.select2.defaults.set('theme', 'bootstrap');
     $('.select2').each(function () {
         var data = $(this).data('json');
-        var config_public = selectConfig(data, $(this).attr('multiple'), $(this).data('ajax-url'));
+        var config_public = selectConfig($(this));
         
         $(this).select2(config_public);
 
@@ -280,27 +303,40 @@ $(function () {
     });
 
     // file-input 初始化
-    $('.file-input').fileinput({
-        language: 'zh',
-        dropZoneEnabled: false,
-        uploadAsync: false,
-        showUpload: false,
-        browseClass: 'btn bg-purple',
-        initialPreviewDelimiter: ',',
-        initialPreviewAsData: true,
-        showClose: false,
-        browseLabel: '选择',
-        removeFromPreviewOnError: true,
-        layoutTemplates: {footer: ''},
-    }).on('filecleared', function (event) {
-        var target = event.target;
-        var name = target.name;
-        if ($('input[type="hidden"][name="'+name+'"]').length === 0) {
-            $(target).parents('.form-group').append('<input type="hidden" name="'+name+'" value=""/>');
+    $('.file-input').each(function () {
+        var config = {
+            language: 'zh',
+            dropZoneEnabled: false,
+            uploadAsync: false,
+            showUpload: false,
+            browseClass: 'btn bg-purple',
+            initialPreviewDelimiter: ',',
+            initialPreviewAsData: true,
+            showClose: false,
+            browseLabel: '选择',
+            removeFromPreviewOnError: true,
+            layoutTemplates: {footer: ''},
+        };
+        if ($(this).data('preview')) {
+            var data = $(this).data('preview').split(',');
+            var preview_config = [];
+
+            for (var i in data) {
+                preview_config.push({type: fileType(data[i]), filetype: ''});
+            }
+            config.initialPreviewConfig = preview_config;
+            config.initialPreview = data;
         }
-    }).on('fileselect', function (event) {
-        var target = event.target;
-        var name = target.name;
-        $('input[type="hidden"][name="'+name+'"]').remove();
+        $(this).fileinput(config).on('filecleared', function (event) {
+            var target = event.target;
+            var name = target.name;
+            if ($('input[type="hidden"][name="'+name+'"]').length === 0) {
+                $(target).parents('.form-group').append('<input type="hidden" name="'+name+'" value=""/>');
+            }
+        }).on('fileselect', function (event) {
+            var target = event.target;
+            var name = target.name;
+            $('input[type="hidden"][name="'+name+'"]').remove();
+        });
     });
 });

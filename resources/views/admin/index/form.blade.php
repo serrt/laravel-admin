@@ -153,20 +153,26 @@
             </div>
         </div>
         <div class="box-body">
+            <audio class="kv-preview-data file-preview-audio" controls="" style="width:100%;height:30px;">
+                <source src="https://qiniu.abcdefg.fun/mp3-1.mp3" type="">
+                <div class="file-preview-other">
+                    <span class="file-other-icon"><i class="glyphicon glyphicon-file"></i></span>
+                </div>
+            </audio>
             <form action="{{route('admin.index.upload')}}" class="form-horizontal validate" method="post" enctype="multipart/form-data" role="form" autocomplete="off">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label class="col-md-2 control-label">File</label>
                     <div class="col-md-8">
-                        <input type="file" class="form-control file-input" name="file" data-rule-required="true">
+                        <input type="file" class="form-control file-input" name="file" data-rule-required="true" data-preview="{{$video_url}}">
                         <p class="help-block text-muted">添加 <code>class="file-input"</code></p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">File preview</label>
                     <div class="col-md-8">
-                        <input type="file" class="form-control file-input" data-initial-preview="{{$imgs_url}}">
-                        <p class="help-block text-muted">添加属性 <code>data-initial-preview="图片地址,图片地址"</code></p>
+                        <input type="file" class="form-control file-input" data-preview="{{$imgs_url}}">
+                        <p class="help-block text-muted">添加属性 <code>data-preview="图片地址,图片地址"</code></p>
                     </div>
                 </div>
                 <div class="form-group">

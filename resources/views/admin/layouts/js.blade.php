@@ -20,6 +20,7 @@
 <script src="{{asset('bootstrap-fileinput/sortable.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('bootstrap-fileinput/purify.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('bootstrap-fileinput/popper.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('bootstrap-fileinput/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('bootstrap-fileinput/fileinput.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('bootstrap-fileinput/zh.js')}}" type="text/javascript"></script>
 <!-- Jquery Validate -->
