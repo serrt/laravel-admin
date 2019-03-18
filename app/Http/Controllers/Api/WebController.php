@@ -153,28 +153,34 @@ class WebController extends Controller
         return KeywordsResource::collection($list)->additional(['code' => Response::HTTP_OK, 'message' => '']);
     }
 
+    /**
+     * 验证是否唯一
+     *
+     * @param $table string 验证的数据表名, 必填
+     * @param $unique string 验证的数据表列名, 默认: id
+     * @param $ignore string 需要忽略的值, 选填
+     */
     public function unique(Request $request)
     {
-        $code = Response::HTTP_BAD_REQUEST;
-        $error = '无参数: unique or table';
-        // 验证是否唯一
-        if ($request->filled('unique') && $request->filled('table')) {
-            $column = $request->input('unique');
-            $table = $request->input('table');
-            $unique_rule = Rule::unique($table, $column);
-            if ($request->filled('ignore')) {
-                $unique_rule->ignore($request->input('ignore'), $column);
-            }
-            $validate = Validator::make($request->all(), [
-                $column => ['required', $unique_rule]
-            ], [
-                $column.'.unique' => ':input 已经存在'
-            ]);
+        $request->validate([
+            'table' => 'required',
+        ], [
+            'table.required' => 'table 参数必填',
+        ]);
 
-            $code = $validate->fails()?Response::HTTP_BAD_REQUEST:Response::HTTP_OK;
-            $error = $validate->fails()?$validate->errors()->first():'';
+        $column = $request->input('unique', 'id');
+        $table = $request->input('table');
+
+        $unique_rule = Rule::unique($table, $column);
+        if ($request->filled('ignore')) {
+            $unique_rule->ignore($request->input('ignore'), $column);
         }
+        $request->validate([
+            $column => ['required', $unique_rule]
+        ], [
+            $column.'.unique' => ':input 已经存在'
+        ]);
 
-        return $this->json([], $code, $error);
+        return $this->success();
     }
 }
