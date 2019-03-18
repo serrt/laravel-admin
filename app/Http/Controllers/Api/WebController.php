@@ -157,8 +157,9 @@ class WebController extends Controller
      * 验证是否唯一
      *
      * @param $table string 验证的数据表名, 必填
-     * @param $unique string 验证的数据表列名, 默认: id
      * @param $ignore string 需要忽略的值, 选填
+     * @param $unique string 验证的数据表列名, 默认: id
+     * @param $ignore_column string 需要忽略的key, 默认: id
      */
     public function unique(Request $request)
     {
@@ -173,7 +174,7 @@ class WebController extends Controller
 
         $unique_rule = Rule::unique($table, $column);
         if ($request->filled('ignore')) {
-            $unique_rule->ignore($request->input('ignore'), $column);
+            $unique_rule->ignore($request->input('ignore'), $request->input('ignore_column', 'id'));
         }
         $request->validate([
             $column => ['required', $unique_rule]
