@@ -59,7 +59,7 @@ function fileType(file) {
         file_type = 'ppt';
     } else if (file.match(/(avi|mpg|mkv|mov|mp4|3gp|webm|wmv|wav)$/i)) {
         file_type = 'video';
-    } else if (file.match(/(mp3)$/i)) {
+    } else if (file.match(/(mp3|mpga)$/i)) {
         file_type = 'audio';
     } else if (file.match(/(jpg|jpeg|gif|png|svg)$/i)) {
         file_type = 'image';

@@ -153,12 +153,6 @@
             </div>
         </div>
         <div class="box-body">
-            <audio class="kv-preview-data file-preview-audio" controls="" style="width:100%;height:30px;">
-                <source src="https://qiniu.abcdefg.fun/mp3-1.mp3" type="">
-                <div class="file-preview-other">
-                    <span class="file-other-icon"><i class="glyphicon glyphicon-file"></i></span>
-                </div>
-            </audio>
             <form action="{{route('admin.index.upload')}}" class="form-horizontal validate" method="post" enctype="multipart/form-data" role="form" autocomplete="off">
                 {{csrf_field()}}
                 <div class="form-group">
