@@ -68,7 +68,7 @@ class UsersController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->save();
 
-        $user->syncRoles($request->input('roles'));
+        $user->roles()->sync($request->input('roles'));
 
         return redirect(route('admin.user.index'))->with('flash_message', '添加成功');
     }
@@ -99,7 +99,7 @@ class UsersController extends Controller
 
         // 更新角色
         if ($request->has('roles')) {
-            $user->syncRoles($request->input('roles'));
+            $user->roles()->sync($request->input('roles'));
              if (auth('admin')->id() == $user->id) {
                  // 清空权限缓存
                  Cache::forget('spatie.permission.cache');
@@ -110,7 +110,7 @@ class UsersController extends Controller
 
         // 更新权限
         if ($request->has('permissions')) {
-            $user->syncPermissions($request->input('permissions'));
+            $user->permissions()->sync($request->input('permissions'));
             if (auth('admin')->id() == $user->id) {
                 // 清空权限缓存
                 Cache::forget('spatie.permission.cache');

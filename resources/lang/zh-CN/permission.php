@@ -24,9 +24,8 @@ return [
     'table' => '表格',
     'ajax' => '异步表单',
     'form' => '表单',
-    'form_upload' => '表单上传',
+    'upload' => '处理表单上传',
 
-    'check' => '检查功能',
     'index' => '主页',
     'create' => '添加',
     'store' => '执行添加',

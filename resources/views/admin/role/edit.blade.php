@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label for="inputName" class="control-label col-md-2">key*</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" name="name" value="{{$role->name}}" id="inputName" data-rule-required="true" data-rule-remote="{{route('api.web.unique',['table'=>'roles', 'unique'=>'name', 'ignore'=>$role->name])}}">
+                    <input type="text" class="form-control" name="name" value="{{$role->name}}" id="inputName" data-rule-required="true" data-rule-remote="{{route('api.web.unique',['table'=>'roles', 'unique'=>'name', 'ignore'=>$role->id])}}">
                     <p class="help-block">角色的英文名称, 不能重复</p>
                 </div>
             </div>

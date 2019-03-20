@@ -19,7 +19,7 @@
                 <div class="form-group">
                     <label for="inputName" class="control-label col-md-2">Key*</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="name" value="{{$permission->name}}" id="inputName" data-rule-required="true" data-rule-remote="{{route('api.web.unique', ['table'=>'permissions', 'unique'=>'name', 'ignore'=>$permission->name])}}">
+                        <input type="text" class="form-control" name="name" value="{{$permission->name}}" id="inputName" data-rule-required="true" data-rule-remote="{{route('api.web.unique', ['table'=>'permissions', 'unique'=>'name', 'ignore'=>$permission->id])}}">
                         <p class="help-block">权限的路由 <code>name</code>, 请询问 <code>网站开发者</code></p>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <label for="selectPid" class="control-label col-md-2">上级</label>
                     <div class="col-md-8">
                         <select name="pid" class="form-control select2" id="selectPid" data-json="{{json_encode($parent)}}" data-ajax-url="{{route('api.web.permission', ['pid' => 0])}}">
-                            <option value=""></option>
+                            <option value="0"></option>
                         </select>
                     </div>
                 </div>

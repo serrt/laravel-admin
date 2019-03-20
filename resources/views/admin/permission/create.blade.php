@@ -33,7 +33,7 @@
                 <label for="selectPid" class="control-label col-md-2">上级</label>
                 <div class="col-md-8">
                     <select name="pid" class="form-control select2" id="selectPid" data-ajax-url="{{route('api.web.permission', ['pid' => 0])}}">
-                        <option value=""></option>
+                        <option value="0"></option>
                     </select>
                 </div>
             </div>

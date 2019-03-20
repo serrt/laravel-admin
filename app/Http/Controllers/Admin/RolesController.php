@@ -42,7 +42,7 @@ class RolesController extends Controller
         ]);
 
         $role = Role::create($request->all());
-        $role->givePermissionTo($request->input('permissions'));
+        $role->permissions()->sync($request->input('permissions'));
 
         return redirect(route('admin.role.index'))->with('flash_message', '添加成功');
     }
@@ -60,7 +60,7 @@ class RolesController extends Controller
         $role->update($request->all());
 
         if ($request->has('permissions')) {
-            $role->syncPermissions($request->input('permissions'));
+            $role->permissions()->sync($request->input('permissions'));
         }
 
         return redirect(route('admin.role.index'))->with('flash_message', '修改成功');
