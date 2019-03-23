@@ -1,7 +1,7 @@
 {
     "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "laravel-admin",
+    "keywords": ["framework", "laravel", "larvael-admin"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -17,7 +17,6 @@
         "barryvdh/laravel-ide-helper": "^2.5",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
-        "laravel/telescope": "^1.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.0",
