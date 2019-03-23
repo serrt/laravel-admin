@@ -78,13 +78,6 @@
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="https://laravel.com/docs/5.7/telescope" target="_blank">
-                            <b class="text-yellow">laravel/telescope</b>&nbsp;
-                            <span class="label label-info">^1.0</span>
-                            <span class="label label-default">dev</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
                         <a href="https://github.com/barryvdh/laravel-debugbar" target="_blank">
                             <b class="text-yellow">barryvdh/laravel-debugbar</b>&nbsp;
                             <span class="label label-info">^3.2</span>

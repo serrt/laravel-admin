@@ -68,7 +68,6 @@ DB_PASSWORD=secret
 ### 2.0(beta)
 
 - 升级 `laravel/framework` 至 `5.7.*` 
-- 添加扩展 `laravel/telescope`, [文档地址](https://laravel.com/docs/5.7/telescope)
 - 删除扩展 `barryvdh/laravel-debugbar`, [文档地址](https://github.com/barryvdh/laravel-debugbar)
 
 ### 2.1
