@@ -17,6 +17,7 @@ class CreateRegionsTable extends Migration
             $table->integer('level')->default(1);
             $table->string('code')->nullable();
         });
+        DB::statement("ALTER TABLE `regions` comment '城市地区'");
 
         // 存储行政编码 数据源有问题，极力不建议使用
         // $this->fillRegionsWithCode();
