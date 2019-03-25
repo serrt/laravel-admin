@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\Rule;
 use App\Http\Middleware\Permission as PermissionMiddleware;
 
-class UsersController extends Controller
+class AdminUsersController extends Controller
 {
     public function index(Request $request)
     {
