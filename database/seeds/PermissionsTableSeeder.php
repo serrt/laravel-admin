@@ -75,7 +75,7 @@ class PermissionsTableSeeder extends Seeder
             }
         }
         $role = Role::query()->updateOrCreate(['name'=>'administer'], ['guard_name' => $guard, 'display_name' => '超级管理员']);
-        $role->givePermissionTo($permissions);
+        $role->permissions()->sync($permissions->pluck('id'));
 
         $user = AdminUser::first();
         $user->assignRole($role);
