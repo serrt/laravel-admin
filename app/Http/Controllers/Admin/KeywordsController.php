@@ -15,7 +15,7 @@ class KeywordsController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Keywords::query()->with('keyType');
+        $query = Keywords::query()->with('type');
 
         if ($request->filled('key')) {
             $name = $request->input('key');
@@ -39,7 +39,10 @@ class KeywordsController extends Controller
 
     public function create(Request $request)
     {
-        $type = KeywordsType::find($request->input('type'));
+        $type = null;
+        if ($request->filled('type')) {
+            $type = KeywordsTypeResource::make(KeywordsType::findOrFail($request->input('type')));
+        }
         return view('admin.keywords.create', compact('type'));
     }
 
@@ -48,11 +51,11 @@ class KeywordsController extends Controller
         $request->validate([
             'key' => 'required|unique:keywords,key',
             'name' => 'required',
-            'type' => 'required'
+            'type_id' => 'required'
         ]);
         $entity = new Keywords();
-        $entity->type = $request->input('type');
-        $entity->type_key = KeywordsType::findOrFail($entity->type)->key;
+        $entity->type_id = $request->input('type_id');
+        $entity->type_key = KeywordsType::findOrFail($entity->type_id)->key;
         $entity->key = $request->input('key');
         $entity->name = $request->input('name');
         $entity->save();
@@ -64,7 +67,9 @@ class KeywordsController extends Controller
     {
         $entity = Keywords::findOrFail($id);
 
-        return view('admin.keywords.edit', compact('entity'));
+        $type = KeywordsTypeResource::make($entity->type);
+
+        return view('admin.keywords.edit', compact('entity', 'type'));
     }
 
     public function update(Request $request, $id)
@@ -72,12 +77,12 @@ class KeywordsController extends Controller
         $request->validate([
             'key' => ['required', Rule::unique('keywords', 'key')->ignore($id, 'id')],
             'name' => 'required',
-            'type' => 'required',
+            'type_id' => 'required',
         ]);
 
         $entity = Keywords::findOrFail($id);
-        $entity->type = $request->input('type');
-        $entity->type_key = KeywordsType::findOrFail($entity->type)->key;
+        $entity->type_id = $request->input('type_id');
+        $entity->type_key = KeywordsType::findOrFail($entity->type_id)->key;
         $entity->key = $request->input('key');
         $entity->name = $request->input('name');
 
@@ -93,20 +98,5 @@ class KeywordsController extends Controller
         $type->delete();
 
         return redirect(route('admin.keywords.index'))->with('flash_message', '删除成功');
-    }
-
-    public function checkType(Request $request)
-    {
-        $unique_rule = Rule::unique('keywords', 'id');
-        if ($request->filled('ignore')) {
-            $unique_rule->ignore($request->input('ignore'), 'id');
-        }
-        $validate = Validator::make($request->all(), [
-            'key' => ['required', $unique_rule]
-        ]);
-
-        $exists = $validate->fails();
-
-        return $this->json([], $exists?Response::HTTP_BAD_REQUEST:Response::HTTP_OK, $exists?$validate->errors('key')->first():'');
     }
 }

@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Keywords extends Model
 {
-    protected $fillable = ['id', 'type', 'key', 'name', 'sort'];
+    protected $fillable = ['id', 'type_id', 'type_key', 'name', 'sort'];
 
     public $timestamps = false;
 
     protected $table = 'keywords';
 
-    public function keyType()
+    public function type()
     {
-        return $this->hasOne(KeywordsType::class, 'id', 'type');
+        return $this->belongsTo(KeywordsType::class, 'type_id', 'id');
     }
 }

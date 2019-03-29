@@ -14,6 +14,6 @@ class KeywordsType extends Model
 
     public function keywords()
     {
-        return $this->hasMany(Keywords::class, 'type', 'id');
+        return $this->hasMany(Keywords::class, 'type_id', 'id');
     }
 }

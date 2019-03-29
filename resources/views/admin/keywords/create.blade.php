@@ -11,11 +11,7 @@
             <div class="form-group">
                 <label for="inputType" class="control-label col-md-2">类型*</label>
                 <div class="col-md-8">
-                    <select name="type" id="inputType" class="form-control select2" data-rule-required="true" data-ajax-url="{{route('api.web.keywords_type')}}">
-                        @if ($type)
-                        <option value="{{$type->id}}" selected="selected">{{$type->name}}</option>
-                        @endif
-                    </select>
+                    <select name="type_id" id="inputType" class="form-control select2" data-rule-required="true" data-json={{json_encode($type)}} data-ajax-url="{{route('api.web.keywords_type')}}"></select>
                 </div>
             </div>
             <div class="form-group">

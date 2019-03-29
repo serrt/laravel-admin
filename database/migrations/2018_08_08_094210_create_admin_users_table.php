@@ -20,6 +20,7 @@ class CreateAdminUsersTable extends Migration {
 			$table->string('name', 100)->nullable()->comment('姓名');
 			$table->timestamps();
 		});
+		DB::statement("ALTER TABLE `admin_users` comment '后台管理员'");
 	}
 
 

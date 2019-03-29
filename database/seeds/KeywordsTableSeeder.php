@@ -27,18 +27,18 @@ class KeywordsTableSeeder extends Seeder
             if (is_array($item['children'])) {
                 foreach ($item['children'] as $key1 => $value) {
                     $sort = $key1+1;
-                    array_push($keywords, ['type' => $id, 'type_key' => $item['key'], 'key' => $item['key'].'_'.$sort, 'name' => $value, 'sort' => $sort]);
+                    array_push($keywords, ['type_id' => $id, 'type_key' => $item['key'], 'key' => $item['key'].'_'.$sort, 'name' => $value, 'sort' => $sort]);
                 }
             } elseif (is_integer($item['children'])) {
                 $i = 1;
                 while ($i <= 10) {
-                    array_push($keywords, ['type' => $id, 'type_key' => $item['key'], 'key' => $item['key'].'_'.$i, 'name' => $i.$item['name'], 'sort' => $i]);
+                    array_push($keywords, ['type_id' => $id, 'type_key' => $item['key'], 'key' => $item['key'].'_'.$i, 'name' => $i.$item['name'], 'sort' => $i]);
                     $i++;
                 }
             }
         }
-        DB::table('keywords_type')->delete();
-        DB::table('keywords')->delete();
+        DB::table('keywords_type')->truncate();
+        DB::table('keywords')->truncate();
         DB::table('keywords_type')->insert($keywords_type);
         DB::table('keywords')->insert($keywords);
     }

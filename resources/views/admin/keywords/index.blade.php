@@ -38,7 +38,7 @@
                 @foreach($list as $item)
                     <tr>
                         <td>
-                            <a href="{{route('admin.keywords.create', ['type'=>$item->type])}}" class="btn-link" title="添加">{{$item->keyType->name}}</a>
+                            <a href="{{route('admin.keywords.create', ['type'=>$item->type_id])}}" class="btn-link" title="添加">{{$item->type->name}}</a>
                         </td>
                         <td>{{$item->key}}</td>
                         <td>

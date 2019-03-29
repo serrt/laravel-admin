@@ -80,19 +80,4 @@ class KeywordsTypeController extends Controller
 
         return redirect(route('admin.keywords_type.index'))->with('flash_message', '删除成功');
     }
-
-    public function checkType(Request $request)
-    {
-        $unique_rule = Rule::unique('keywords_type', 'key');
-        if ($request->filled('ignore')) {
-            $unique_rule->ignore($request->input('ignore'), 'key');
-        }
-        $validate = Validator::make($request->all(), [
-            'key' => ['required', $unique_rule]
-        ]);
-
-        $exists = $validate->fails();
-
-        return $this->json([], $exists?Response::HTTP_BAD_REQUEST:Response::HTTP_OK, $exists?$validate->errors('key')->first():'');
-    }
 }

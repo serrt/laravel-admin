@@ -141,7 +141,7 @@ class WebController extends Controller
         }
 
         if ($request->filled('type')) {
-            $query->where('type', $request->input('type'));
+            $query->where('type_id', $request->input('type'));
         }
         if ($request->filled('type_key')) {
             $type_key = $request->input('type_key');
