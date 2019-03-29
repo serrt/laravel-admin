@@ -50,7 +50,7 @@ class Permission
             if (config('permission.debug')) {
                 $list = Menu::query()->with('parent')->get();
             } else {
-                $urls = PermissionModel::findById(auth('admin')->id())->pluck('name');
+                $urls = auth('admin')->user()->getAllPermissions()->pluck('name');
                 $list = Menu::query()->whereIn('permission_name', $urls)->with('parent')->get();
                 foreach ($list as $item) {
                     if ($item->pid && $list->where('id', $item->pid)->count() == 0) {
