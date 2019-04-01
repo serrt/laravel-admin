@@ -112,7 +112,7 @@ $(function () {
     $('.datetime').datetimepicker({
         autoclose: true,
         clearBtn: true,
-        format: 'yyyy-mm-dd hh:ii',
+        format: 'yyyy-mm-dd hh:ii:ss',
         language: 'zh-CN'
     });
 
