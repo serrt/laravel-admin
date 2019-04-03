@@ -13,6 +13,11 @@
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
+        @media screen and (max-width: 300px) {
+            body {
+                background-image: url('/images/login-bg-md.jpg');
+            }
+        }
     </style>
 </head>
 <body class="login-page">
