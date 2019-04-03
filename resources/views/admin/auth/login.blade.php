@@ -7,8 +7,15 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @include('admin.layouts.css')
+    <style type="text/css">
+        .login-page {
+            background-image: url('/images/login-bg.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+    </style>
 </head>
-<body class="hold-transition login-page">
+<body class="login-page">
     <div class="login-box">
         <div class="login-logo">
             <a href="/">{{config('app.name')}}</a>
