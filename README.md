@@ -58,7 +58,7 @@ DB_PASSWORD=secret
 
 ### 1.0
 
-- 框架 [laravel/framework:5.6](https://learnku.com/docs/laravel/5.6)
+- 框架 [laravel/framework:5.6](https://learnku.com/docs/laravel/5.7)
 - 扩展 [spatie/laravel-permission](https://github.com/spatie/laravel-permission)
 - 扩展 [arcanedev/log-viewer](https://github.com/ARCANEDEV/LogViewer)
 - 扩展 [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
@@ -76,3 +76,10 @@ DB_PASSWORD=secret
 - 添加权限缓存, 缓存页面的 `Title` 部分和 `breadcrumb` 部分 
 - 修改权限初始化的翻译文件
 - 在页面头部添加 **手动清除当前用户的菜单缓存, 权限缓存** 按钮
+
+### 2.2
+
+- 移除扩展 [laravel-telescope](https://laravel.com/docs/5.7/telescope)
+- 修复权限的bug(分配权限后, 还是看到全部的菜单)
+- 修改数据表结构 **keywords.type** => **keywords.type_id**
+- 添加后台登陆页背景图(在 `views/admin/auth/login.blade.php` 可以自由更换)
