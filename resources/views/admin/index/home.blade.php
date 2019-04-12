@@ -40,10 +40,6 @@
                         <b>Locale</b>
                         <span class="pull-right">{{config('app.locale')}}</span>
                     </li>
-                    <li class="list-group-item">
-                        <b>URL</b>
-                        <span class="pull-right">{{config('app.url')}}</span>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -106,13 +102,19 @@
             <div class="box-body">
                 <ul class="list-group">
                     <li class="list-group-item">
+                        <a href="http://getbootstrap.com" target="_blank">
+                            <b>boootstrap</b>&nbsp;
+                            <span class="label label-info">3.3.7</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a href="https://adminlte.io" target="_blank">
                             <b>adminlte</b>&nbsp;
                             <span class="label label-info">2.4.5</span>
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="http://fontawesome.io" target="_blank">
+                        <a href="https://fontawesome.io" target="_blank">
                             <b>font-awesome</b>&nbsp;
                             <span class="label label-info">4.7.0</span>
                         </a>
@@ -136,13 +138,7 @@
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="https://github.com/uxsolutions/bootstrap-datepicker" target="_blank">
-                            <b>bootstrap-datepicker</b>&nbsp;
-                            <span class="label label-info">1.8.0</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="http://www.malot.fr/bootstrap-datetimepicker" target="_blank">
+                        <a href="https://www.malot.fr/bootstrap-datetimepicker" target="_blank">
                             <b>bootstrap-datetimepicker</b>&nbsp;
                             <span class="label label-info">master</span>
                         </a>

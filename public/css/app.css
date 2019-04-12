@@ -8,3 +8,7 @@
 .table .img-thumbnail {
     max-width: unset
 }
+
+.date-range input, .datetime-range input {
+    text-align: center;
+}

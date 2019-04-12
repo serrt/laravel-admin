@@ -70,7 +70,7 @@ function fileType(file) {
 }
 $(function () {
     // 切换皮肤
-    var currentSkin = 'skin-black-light';
+    var currentSkin = 'skin-blue';
 
     $('#layout-skins-list [data-skin]').click(function (e) {
         e.preventDefault()
@@ -81,32 +81,31 @@ $(function () {
     });
 
     // 时间控件
-    $('.date').datepicker({
-        autoclose: true,
-        clearBtn: true,
-        format: 'yyyy-mm-dd',
-        language: 'zh-CN',
-        minViewMode: 'days',
-        enableOnReadonly: false,
-    });
-
-    // 时间控件
-    $('.year').datepicker({
+    $('.year').datetimepicker({
         autoclose: true,
         clearBtn: true,
         format: 'yyyy',
-        language: 'zh-CN',
-        minViewMode: 'decade',
-        enableOnReadonly: false,
+        minView: 'decade',
+        startView: 'decade',
+        language: 'zh-CN'
     });
     // 时间控件
-    $('.month').datepicker({
+    $('.month').datetimepicker({
         autoclose: true,
         clearBtn: true,
         format: 'yyyy-mm',
-        language: 'zh-CN',
-        minViewMode: 'year',
-        enableOnReadonly: false,
+        minView: 'year',
+        startView: 'year',
+        language: 'zh-CN'
+    });
+
+    $('.date').datetimepicker({
+        autoclose: true,
+        clearBtn: true,
+        format: 'yyyy-mm-dd',
+        minView: 'month',
+        startView: 'month',
+        language: 'zh-CN'
     });
 
     $('.datetime').datetimepicker({
@@ -116,11 +115,63 @@ $(function () {
         language: 'zh-CN'
     });
 
-    $('.input-daterange').datepicker({
-        format: 'yyyy-mm-dd',
-        language: 'zh-CN',
-        minViewMode: 'days',
-        enableOnReadonly: false,
+    // $('.input-daterange').datepicker({
+    //     format: 'yyyy-mm-dd',
+    //     language: 'zh-CN',
+    //     minViewMode: 'days',
+    //     enableOnReadonly: false,
+    // });
+
+    $('.date-range').each(function () {
+        var self = $(this);
+        var start_time = self.find('input:eq(0)');
+        var end_time = self.find('input:eq(1)');
+
+        start_time.datetimepicker({
+            autoclose: true,
+            clearBtn: true,
+            format: 'yyyy-mm-dd',
+            minView: 'month',
+            startView: 'month',
+            language: 'zh-CN'
+        }).on('changeDate', function (ev) {
+            end_time.datetimepicker('setStartDate', ev.date);
+        });
+
+        end_time.datetimepicker({
+            autoclose: true,
+            clearBtn: true,
+            format: 'yyyy-mm-dd',
+            minView: 'month',
+            startView: 'month',
+            language: 'zh-CN'
+        }).on('changeDate', function (ev) {
+            start_time.datetimepicker('setEndDate', ev.date);
+        });
+    });
+
+    $('.datetime-range').each(function () {
+        var self = $(this);
+        var start_time = self.find('input:eq(0)');
+        var end_time = self.find('input:eq(1)');
+
+        start_time.datetimepicker({
+            autoclose: true,
+            clearBtn: true,
+            format: 'yyyy-mm-dd hh:ii:ss',
+            language: 'zh-CN'
+        }).on('changeDate', function (ev) {
+            end_time.datetimepicker('setStartDate', ev.date);
+        });
+
+        end_time.datetimepicker({
+            autoclose: true,
+            clearBtn: true,
+            format: 'yyyy-mm-dd hh:ii:ss',
+            language: 'zh-CN'
+        }).on('changeDate', function (ev) {
+            start_time.datetimepicker('setEndDate', ev.date);
+        });
     });
 
     // Jquery 表单验证
