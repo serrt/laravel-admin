@@ -314,6 +314,30 @@ $(function () {
             var c = b-a;
             return this.optional(element) || c<=param;
         },
+        required: function( value, element, param ) {
+            if ( !this.depend( param, element ) ) {
+                return "dependency-mismatch";
+            }
+            if ( element.nodeName.toLowerCase() === "select" ) {
+                var val = $( element ).val();
+                return val && val.length > 0;
+            }
+
+            if ( this.checkable( element ) ) {
+                return this.getLength( value, element ) > 0;
+            }
+
+            var bol = value.length > 0;
+
+            if (!bol) {
+                if (element.type === 'file' && $(element).hasClass('file-input')) {
+                    var content = $(element).fileinput('getPreview').content;
+                    bol = content.length > 0;
+                }
+            }
+
+            return bol;
+        },
     });
 
     // select2 初始化
