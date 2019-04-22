@@ -6,7 +6,7 @@ use App\Models\Menu;
 use Closure;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
-use \App\Models\Permission as PermissionModel;
+use App\Models\Permission as PermissionModel;
 
 class Permission
 {
