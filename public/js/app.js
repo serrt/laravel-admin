@@ -115,13 +115,6 @@ $(function () {
         language: 'zh-CN'
     });
 
-    // $('.input-daterange').datepicker({
-    //     format: 'yyyy-mm-dd',
-    //     language: 'zh-CN',
-    //     minViewMode: 'days',
-    //     enableOnReadonly: false,
-    // });
-
     $('.date-range').each(function () {
         var self = $(this);
         var start_time = self.find('input:eq(0)');
