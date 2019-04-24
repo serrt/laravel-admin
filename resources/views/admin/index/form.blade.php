@@ -52,6 +52,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="time" class="col-md-2 control-label">Time</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control time" id="time">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-md-2 control-label">Date Range</label>
                     <div class="col-md-8">
                         <div class="input-group date-range">

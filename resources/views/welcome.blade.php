@@ -73,9 +73,9 @@
         </div>
 
         <div class="links">
-            <a href="/admin" target="_blank">Admin</a>
-            <a href="https://laravel-china.org" target="_blank">News</a>
-            <a href="https://laravel-china.org/docs/laravel/5.7" target="_blank">Document</a>
+            <a href="{{route('admin.index.index')}}" target="_blank">Admin</a>
+            <a href="https://learnku.com/laravel" target="_blank">News</a>
+            <a href="https://learnku.com/docs/laravel/5.7" target="_blank">Document</a>
             <a href="https://github.com/serrt" target="_blank">GitHub</a>
         </div>
     </div>

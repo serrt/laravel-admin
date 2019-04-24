@@ -115,6 +115,15 @@ $(function () {
         language: 'zh-CN'
     });
 
+    $('.time').datetimepicker({
+        autoclose: true,
+        clearBtn: true,
+        format: 'hh:ii:ss',
+        language: 'zh-CN',
+        minView: 'hour',
+        startView: 'day',
+    });
+
     $('.date-range').each(function () {
         var self = $(this);
         var start_time = self.find('input:eq(0)');
@@ -152,7 +161,9 @@ $(function () {
             autoclose: true,
             clearBtn: true,
             format: 'yyyy-mm-dd hh:ii:ss',
-            language: 'zh-CN'
+            language: 'zh-CN',
+            minView: 'hour',
+            startView: 'month'
         }).on('changeDate', function (ev) {
             end_time.datetimepicker('setStartDate', ev.date);
         });
@@ -161,7 +172,9 @@ $(function () {
             autoclose: true,
             clearBtn: true,
             format: 'yyyy-mm-dd hh:ii:ss',
-            language: 'zh-CN'
+            language: 'zh-CN',
+            minView: 'hour',
+            startView: 'month'
         }).on('changeDate', function (ev) {
             start_time.datetimepicker('setEndDate', ev.date);
         });
