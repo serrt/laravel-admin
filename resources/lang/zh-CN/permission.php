@@ -14,7 +14,7 @@ return [
 
     'admin.index' => '首页',
     'admin.role' => '角色',
-    'admin.user' => '管理员',
+    'admin.admin_user' => '管理员',
     'admin.keywords_type' => '字典类型',
     'admin.keywords' => '字典',
     'admin.menu' => '菜单',
@@ -34,8 +34,8 @@ return [
     'destroy' => '删除',
     'show' => '详细',
 
-    'admin.user.role' => '修改用户角色',
-    'admin.user.permission' => '修改用户权限',
+    'admin.admin_user.role' => '修改用户角色',
+    'admin.admin_user.permission' => '修改用户权限',
     'admin.role.permission' => '修改角色权限',
-    'admin.user.menu' => '修改用户菜单'
+    'admin.admin_user.menu' => '修改用户菜单'
 ];

@@ -35,7 +35,7 @@
                 </ul>
                 <div class="tab-content">
                     <div class="active tab-pane" id="permission" onselectstart="return false;">
-                        @include('admin.user.tree', ['permissions'=>$user_permissions, 'pid'=>0, 'checked' => collect()])
+                        @include('admin.admin_user.tree', ['permissions'=>$user_permissions, 'pid'=>0, 'checked' => collect()])
                     </div>
                     <div class="tab-pane" id="role">
                         <ul class="list-group">

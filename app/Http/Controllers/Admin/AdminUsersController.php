@@ -39,7 +39,7 @@ class AdminUsersController extends Controller
 
         $list = $query->paginate();
 
-        return view('admin.user.index', compact('list', 'role'));
+        return view('admin.admin_user.index', compact('list', 'role'));
     }
 
     public function show($id)
@@ -47,12 +47,12 @@ class AdminUsersController extends Controller
         $user = AdminUser::findOrFail($id);
         $user_permissions = $user->getAllPermissions();
         $user_roles = $user->roles;
-        return view('admin.user.show', compact('user', 'user_permissions', 'user_roles'));
+        return view('admin.admin_user.show', compact('user', 'user_permissions', 'user_roles'));
     }
 
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.admin_user.create');
     }
 
     public function store(Request $request)
@@ -70,7 +70,7 @@ class AdminUsersController extends Controller
 
         $user->roles()->sync($request->input('roles'));
 
-        return redirect(route('admin.user.index'))->with('flash_message', '添加成功');
+        return redirect(route('admin.admin_user.index'))->with('flash_message', '添加成功');
     }
 
     public function edit($id)
@@ -78,7 +78,7 @@ class AdminUsersController extends Controller
         $user = AdminUser::with('roles')->findOrFail($id);
 
 
-        return view('admin.user.edit', compact('user'));
+        return view('admin.admin_user.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
@@ -119,7 +119,7 @@ class AdminUsersController extends Controller
             }
         }
 
-        return redirect(route('admin.user.index'))->with('flash_message', '修改成功');
+        return redirect(route('admin.admin_user.index'))->with('flash_message', '修改成功');
     }
 
     public function destroy($id)
@@ -134,7 +134,7 @@ class AdminUsersController extends Controller
 
         $user->delete();
 
-        return redirect(route('admin.user.index'))->with('flash_message', '删除成功');
+        return redirect(route('admin.admin_user.index'))->with('flash_message', '删除成功');
     }
 
     public function role($id)
@@ -143,7 +143,7 @@ class AdminUsersController extends Controller
 
         $user_roles = RoleResource::collection($user->roles);
 
-        return view('admin.user.role', compact('user', 'user_roles'));
+        return view('admin.admin_user.role', compact('user', 'user_roles'));
     }
 
     public function permission($id)
@@ -154,6 +154,6 @@ class AdminUsersController extends Controller
 
         $user_permissions = $user->permissions;
 
-        return view('admin.user.permission', compact('user', 'user_permissions', 'permissions'));
+        return view('admin.admin_user.permission', compact('user', 'user_permissions', 'permissions'));
     }
 }

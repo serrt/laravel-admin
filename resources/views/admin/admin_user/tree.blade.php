@@ -9,7 +9,7 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     @endif
                 </li>
-                @include('admin.user.tree', ['permissions'=>$permissions, 'pid'=>$permission->id, 'checked' => $checked])
+                @include('admin.admin_user.tree', ['permissions'=>$permissions, 'pid'=>$permission->id, 'checked' => $checked])
             @endif
         @endforeach
     </ul>
