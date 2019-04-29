@@ -54,6 +54,10 @@ DB_PASSWORD=secret
 
 - 多文件管理
 
+### [select2](https://select2.org/)
+
+- 分页加载时, 每页数量较少时(少于6个), 不能触发滚动加载
+
 ## Releases
 
 ### 1.0
