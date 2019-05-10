@@ -29,17 +29,17 @@ class AppServiceProvider extends ServiceProvider
             $accessId  = $config['access_id'];
             $accessKey = $config['access_key'];
 
-            $cdnDomain = $config['cdnDomain'];
             $bucket    = $config['bucket'];
             $ssl       = $config['ssl']; 
             $isCname   = $config['isCName'];
             $debug     = $config['debug'];
-            $endPoint  = $config['endpoint'] ?: $bucket.'.'.$cdnDomain;
+            $endPoint  = $config['endpoint'];
+            $cdnDomain = $config['cdnDomain'] ?: $bucket.'.'.$endPoint;
             
             if($debug) Log::debug('OSS config:', $config);
 
-            $client  = new OssClient($accessId, $accessKey, $bucket.'.'.$cdnDomain, $isCname);
-            $adapter = new AliOssAdapter($client, $bucket, $endPoint, $ssl, $isCname, $debug, $cdnDomain);
+            $client  = new OssClient($accessId, $accessKey, $bucket.'.'.$endPoint, $isCname);
+            $adapter = new AliOssAdapter($client, $bucket, $cdnDomain, $ssl, $isCname, $debug, $endPoint);
 
             $filesystem =  new Filesystem($adapter);
             

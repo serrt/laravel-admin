@@ -53,9 +53,9 @@ ALI_ACCESS_KEY=
 # (必须) bucket 名称
 ALI_BUCKET=xxx
 # (必须) cdn 域名
-ALI_CDN_DOMAIN=oss-cn-xxx.aliyuncs.com
+ALI_ENDPOINT=oss-cn-xxx.aliyuncs.com
 # (可选) 自定义 域名
-ALI_ENDPOINT=xxx.xxx.xxx
+ALI_CDN_DOMAIN=xxx.xxx.xxx
 # (可选) 是否强制用 https 访问
 ALI_SSL=true
 ```

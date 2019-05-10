@@ -68,14 +68,11 @@ return [
             'access_id' => env('ALI_ACCESS_ID'),
             'access_key' => env('ALI_ACCESS_KEY'),
             'bucket' => env('ALI_BUCKET'),
-            'cdnDomain' => env('ALI_CDN_DOMAIN'),
-
             'endpoint' => env('ALI_ENDPOINT'),
 
+            'cdnDomain' => env('ALI_CDN_DOMAIN'),
             'ssl' => env('ALI_SSL', false),
-            
             'isCName' => true,
-            
             'debug' => false,
         ],
     ],
