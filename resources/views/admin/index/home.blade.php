@@ -67,6 +67,12 @@
                         </a>
                     </li>
                     <li class="list-group-item">
+                        <a href="https://github.com/jacobcyl/Aliyun-oss-storage" target="_blank">
+                            <b class="text-yellow">jacobcyl/ali-oss-storage</b>&nbsp;
+                            <span class="label label-info">^2.1</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a href="https://github.com/barryvdh/laravel-ide-helper" target="_blank">
                             <b class="text-yellow">barryvdh/laravel-ide-helper</b>&nbsp;
                             <span class="label label-info">^2.5</span>
