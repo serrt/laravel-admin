@@ -38,6 +38,38 @@ DB_PASSWORD=secret
 - 添加管理员菜单, `php artisan db:seed --class=MenusTableSeeder`, 并将全部菜单赋予**第一个**管理员
 - 根据后台路由(`admin.php`) 添加权限, `php artisan db:seed --class=PermissionsTableSeeder`, 并将全部权限赋予`administer`, 同时更新菜单(需要重新登陆才能看到效果)
 
+### 阿里云 OSS
+
+- 依赖于 [jacobcyl/ali-oss-storage](https://github.com/jacobcyl/Aliyun-oss-storage), 重写其中的一部分功能 `App\Providers\AppServiceProvider@boot`, `App\Services\AliOssAdapter`
+- 配置 `.env`
+
+```
+# (可选) 修改默认的文件上传为 oss
+FILESYSTEM_DRIVER=oss
+# (必须) oss key
+ALI_ACCESS_ID=
+# (必须) oss secret
+ALI_ACCESS_KEY=
+# (必须) bucket 名称
+ALI_BUCKET=xxx
+# (必须) cdn 域名
+ALI_CDN_DOMAIN=oss-cn-xxx.aliyuncs.com
+# (可选) 自定义 域名
+ALI_ENDPOINT=xxx.xxx.xxx
+# (可选) 是否强制用 https 访问
+ALI_SSL=true
+```
+
+- 用法同框架默认的 [文件系统](https://learnku.com/docs/laravel/5.7/filesystem/2281)
+- 将 **远程文件** 上传到 oss
+
+```php
+// env('FILESYSTEM_DRIVER') == oss
+Storage::putRemoteFile('target/path/to/file/jacob.jpg', 'http://example.com/jacob.jpg');
+// env('FILESYSTEM_DRIVER') != oss
+Storage::disk('oss')->putRemoteFile('target/path/to/file/jacob.jpg', 'http://example.com/jacob.jpg');
+```
+
 ## TODO
 
 ### [laravel-permission](https://github.com/spatie/laravel-permission)
