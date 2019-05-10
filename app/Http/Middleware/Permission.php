@@ -100,7 +100,7 @@ class Permission
             } else {
                 $url = url($url);
             }
-            if (starts_with($current_url .'/', $url.'/')) {
+            if (starts_with($current_url, $url)) {
                 $menu['active'] = true;
             }
             $menu['url'] = $url;

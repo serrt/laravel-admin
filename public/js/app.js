@@ -239,10 +239,6 @@ $(function () {
                     error.appendTo(element.parent());
                 }
             },
-            submitHandler: function (form) {
-                form_validate.find('button[type="submit"]').button('loading');
-                return true;
-            },
             // 忽略.ignore
             ignore: '.ignore'
         })
