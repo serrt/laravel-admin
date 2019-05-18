@@ -70,7 +70,7 @@ function fileType(file) {
 }
 $(function () {
     // 切换皮肤
-    var currentSkin = 'skin-black-light';
+    var currentSkin = 'skin-blue';
 
     $('#layout-skins-list [data-skin]').click(function (e) {
         e.preventDefault()
@@ -81,32 +81,31 @@ $(function () {
     });
 
     // 时间控件
-    $('.date').datepicker({
-        autoclose: true,
-        clearBtn: true,
-        format: 'yyyy-mm-dd',
-        language: 'zh-CN',
-        minViewMode: 'days',
-        enableOnReadonly: false,
-    });
-
-    // 时间控件
-    $('.year').datepicker({
+    $('.year').datetimepicker({
         autoclose: true,
         clearBtn: true,
         format: 'yyyy',
-        language: 'zh-CN',
-        minViewMode: 'decade',
-        enableOnReadonly: false,
+        minView: 'decade',
+        startView: 'decade',
+        language: 'zh-CN'
     });
     // 时间控件
-    $('.month').datepicker({
+    $('.month').datetimepicker({
         autoclose: true,
         clearBtn: true,
         format: 'yyyy-mm',
-        language: 'zh-CN',
-        minViewMode: 'year',
-        enableOnReadonly: false,
+        minView: 'year',
+        startView: 'year',
+        language: 'zh-CN'
+    });
+
+    $('.date').datetimepicker({
+        autoclose: true,
+        clearBtn: true,
+        format: 'yyyy-mm-dd',
+        minView: 'month',
+        startView: 'month',
+        language: 'zh-CN'
     });
 
     $('.datetime').datetimepicker({
@@ -116,11 +115,69 @@ $(function () {
         language: 'zh-CN'
     });
 
-    $('.input-daterange').datepicker({
-        format: 'yyyy-mm-dd',
+    $('.time').datetimepicker({
+        autoclose: true,
+        clearBtn: true,
+        format: 'hh:ii:ss',
         language: 'zh-CN',
-        minViewMode: 'days',
-        enableOnReadonly: false,
+        minView: 'hour',
+        startView: 'day',
+    });
+
+    $('.date-range').each(function () {
+        var self = $(this);
+        var start_time = self.find('input:eq(0)');
+        var end_time = self.find('input:eq(1)');
+
+        start_time.datetimepicker({
+            autoclose: true,
+            clearBtn: true,
+            format: 'yyyy-mm-dd',
+            minView: 'month',
+            startView: 'month',
+            language: 'zh-CN'
+        }).on('changeDate', function (ev) {
+            end_time.datetimepicker('setStartDate', ev.date);
+        });
+
+        end_time.datetimepicker({
+            autoclose: true,
+            clearBtn: true,
+            format: 'yyyy-mm-dd',
+            minView: 'month',
+            startView: 'month',
+            language: 'zh-CN'
+        }).on('changeDate', function (ev) {
+            start_time.datetimepicker('setEndDate', ev.date);
+        });
+    });
+
+    $('.datetime-range').each(function () {
+        var self = $(this);
+        var start_time = self.find('input:eq(0)');
+        var end_time = self.find('input:eq(1)');
+
+        start_time.datetimepicker({
+            autoclose: true,
+            clearBtn: true,
+            format: 'yyyy-mm-dd hh:ii:ss',
+            language: 'zh-CN',
+            minView: 'hour',
+            startView: 'month'
+        }).on('changeDate', function (ev) {
+            end_time.datetimepicker('setStartDate', ev.date);
+        });
+
+        end_time.datetimepicker({
+            autoclose: true,
+            clearBtn: true,
+            format: 'yyyy-mm-dd hh:ii:ss',
+            language: 'zh-CN',
+            minView: 'hour',
+            startView: 'month'
+        }).on('changeDate', function (ev) {
+            start_time.datetimepicker('setEndDate', ev.date);
+        });
     });
 
     // Jquery 表单验证
@@ -181,10 +238,6 @@ $(function () {
                 }  else {
                     error.appendTo(element.parent());
                 }
-            },
-            submitHandler: function (form) {
-                form_validate.find('button[type="submit"]').button('loading');
-                return true;
             },
             // 忽略.ignore
             ignore: '.ignore'
@@ -262,6 +315,30 @@ $(function () {
             var b = value.length;
             var c = b-a;
             return this.optional(element) || c<=param;
+        },
+        required: function( value, element, param ) {
+            if ( !this.depend( param, element ) ) {
+                return "dependency-mismatch";
+            }
+            if ( element.nodeName.toLowerCase() === "select" ) {
+                var val = $( element ).val();
+                return val && val.length > 0;
+            }
+
+            if ( this.checkable( element ) ) {
+                return this.getLength( value, element ) > 0;
+            }
+
+            var bol = value.length > 0;
+
+            if (!bol) {
+                if (element.type === 'file' && $(element).hasClass('file-input')) {
+                    var content = $(element).fileinput('getPreview').content;
+                    bol = content.length > 0;
+                }
+            }
+
+            return bol;
         },
     });
 

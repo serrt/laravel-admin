@@ -4,8 +4,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">基本表单</h3>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             </div>
         </div>
         <div class="box-body">
@@ -52,9 +51,15 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="time" class="col-md-2 control-label">Time</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control time" id="time">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-md-2 control-label">Date Range</label>
                     <div class="col-md-8">
-                        <div class="input-group input-daterange">
+                        <div class="input-group date-range">
                             <input type="text" name="start_time" class="form-control">
                             <span class="input-group-addon">至</span>
                             <input type="text" name="end_time" class="form-control">
@@ -62,8 +67,18 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-8 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    <label class="col-md-2 control-label">Date Time Range</label>
+                    <div class="col-md-8">
+                        <div class="input-group datetime-range">
+                            <input type="text" name="start_time" class="form-control">
+                            <span class="input-group-addon">至</span>
+                            <input type="text" name="end_time" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-2">
+                        <button type="submit" class="btn btn-primary" id="loading-button" data-loading-text="Loading..." autocomplete="off">Submit</button>
                         <a href="javascript:history.back();" class="btn btn-default">返回</a>
                     </div>
                 </div>
@@ -170,7 +185,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-8 col-lg-offset-2">
+                    <div class="col-md-8 col-md-offset-2">
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <a href="javascript:history.back();" class="btn btn-default">返回</a>
                     </div>

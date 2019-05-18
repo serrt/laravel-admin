@@ -6,7 +6,7 @@ use App\Models\Menu;
 use Closure;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
-use \App\Models\Permission as PermissionModel;
+use App\Models\Permission as PermissionModel;
 
 class Permission
 {
@@ -100,7 +100,7 @@ class Permission
             } else {
                 $url = url($url);
             }
-            if (starts_with($current_url .'/', $url.'/')) {
+            if (starts_with($current_url, $url)) {
                 $menu['active'] = true;
             }
             $menu['url'] = $url;

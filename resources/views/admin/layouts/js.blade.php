@@ -10,9 +10,6 @@
 <script src="{{asset('select2/select2.min.js')}}"></script>
 <script src="{{asset('select2/zh-CN.js')}}"></script>
 <!-- Bootstrap-datepicker -->
-<script src="{{asset('bootstrap/bootstrap-datepicker.js')}}"></script>
-<script src="{{asset('bootstrap/bootstrap-datepicker.zh-CN.js')}}"></script>
-<!-- Bootstrap-datepicker -->
 <script src="{{asset('bootstrap/bootstrap-datetimepicker.js')}}"></script>
 <script src="{{asset('bootstrap/bootstrap-datetimepicker.zh-CN.js')}}"></script>
 <!-- Bootstrap-fileinput -->

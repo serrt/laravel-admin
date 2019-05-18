@@ -27,7 +27,6 @@
                 <th>上级</th>
                 <th>名称</th>
                 <th>code</th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -37,13 +36,11 @@
                 <td>{{$item->parent?$item->parent->name:'--'}}</td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->code}}</td>
-                <td></td>
             </tr>
             @endforeach
             </tbody>
         </table>
     </div>
-
     <div class="box-footer clearfix">
         {{$list->appends(request()->all())->links()}}
     </div>

@@ -6,7 +6,7 @@
     </div>
 
     <div class="box-body">
-        <form action="{{route('admin.user.update',$user)}}" class="form-horizontal validate" method="post">
+        <form action="{{route('admin.admin_user.update',$user)}}" class="form-horizontal validate" method="post">
             {{csrf_field()}}
             {{method_field('put')}}
             <div class="form-group">
@@ -34,7 +34,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-2">
                     <button type="submit" class="btn btn-primary">提交</button>
-                    <a href="{{route('admin.user.index')}}" class="btn btn-default"> 返回</a>
+                    <a href="{{route('admin.admin_user.index')}}" class="btn btn-default"> 返回</a>
                 </div>
             </div>
         </form>

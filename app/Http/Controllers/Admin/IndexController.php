@@ -57,7 +57,7 @@ class IndexController extends Controller
     {
         $img_url = 'https://qiniu.abcdefg.fun/act-pic3.png';
         $imgs_url = 'https://qiniu.abcdefg.fun/act-pic3.png,http://qiniu.abcdefg.fun/act-pic4.png';
-        $video_url = 'https://qiniu.abcdefg.fun/mp4-1.mp4,http://kartik-v.github.io/bootstrap-fileinput-samples/samples/pdf-sample.pdf,http://kartik-v.github.io/bootstrap-fileinput-samples/samples/SampleXLSFile_38kb.xls,https://qiniu.abcdefg.fun/mp3-1.mp3';
+        $video_url = 'https://qiniu.abcdefg.fun/mp4-1.mp4,https://qiniu.abcdefg.fun/mp3-1.mp3';
 
         $city = RegionResource::make(Region::query()->where('level', 1)->first());
         $cities = RegionResource::collection(Region::query()->where('level', 1)->limit(3)->get());
