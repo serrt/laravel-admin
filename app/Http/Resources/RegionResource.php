@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class RegionResource extends JsonResource
