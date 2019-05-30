@@ -90,6 +90,10 @@ Storage::disk('oss')->putRemoteFile('target/path/to/file/jacob.jpg', 'http://exa
 
 - 分页加载时, 每页数量较少时(少于6个), 不能触发滚动加载
 
+### Sql查询日志
+
+- 区分文件, 不打印在框架的日志文件里面
+
 ## Releases
 
 ### 1.0
