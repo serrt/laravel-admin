@@ -31,7 +31,7 @@ class QueryLogListener
         $log = vsprintf($sql, $event->bindings);
 
         if (config('app.env') != 'production') {
-            Log::info($log." [".$event->time." ms]");
+            Log::channel('query')->info($log." [".$event->time." ms]");
         }
     }
 }
