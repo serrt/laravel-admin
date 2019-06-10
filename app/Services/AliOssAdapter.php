@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use League\Flysystem\FileNotFoundException;
 use Jacobcyl\AliOSS\AliOssAdapter as BaseAliOssAdapter;
 
 class AliOssAdapter extends BaseAliOssAdapter
