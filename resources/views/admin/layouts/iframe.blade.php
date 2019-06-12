@@ -104,20 +104,7 @@
     <!-- 左边菜单 -->
     <aside class="main-sidebar">
         <section class="sidebar">
-            <ul class="sidebar-menu">
-            @foreach($current_user_menus as $item)
-                <li class="treeview {{$item['active']?'active':''}}">
-                    <a href="{{isset($item['url'])?url($item['url']):'javascript:void(0)'}}" class="nav-link">
-                        <i class="{{$item['icon']}}"></i>
-                        <span class="title menu-text">{{$item['text']}}</span>
-                        @if(isset($item['children']))
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        @endif
-                    </a>
-                    @include('admin.layouts._menu', ['item' => $item])
-                </li>
-            @endforeach
-            </ul>
+            @include('admin.layouts._menu', ['current_user_menus' => $current_user_menus])
         </section>
     </aside>
 
