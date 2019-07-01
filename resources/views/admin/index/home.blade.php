@@ -73,6 +73,12 @@
                         </a>
                     </li>
                     <li class="list-group-item">
+                        <a href="https://github.com/Tucker-Eric/EloquentFilter" target="_blank">
+                            <b class="text-yellow">tucker-eric/eloquentfilter</b>&nbsp;
+                            <span class="label label-info">^1.4</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a href="https://github.com/barryvdh/laravel-ide-helper" target="_blank">
                             <b class="text-yellow">barryvdh/laravel-ide-helper</b>&nbsp;
                             <span class="label label-info">^2.5</span>

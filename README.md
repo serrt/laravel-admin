@@ -1,6 +1,7 @@
 # admin-iframe
 
 构建后台项目
+后续会推出一些自己写的插件
 
 ## 项目要求
 
@@ -74,7 +75,9 @@ Storage::disk('oss')->putRemoteFile('target/path/to/file/jacob.jpg', 'http://exa
 
 - [在线测试](http://lengshifu.hmily.club/sign)
 - 加入签名验证 `app/Http/Middleware/Signature.php`, 中间件 `signature`
+- 添加配置文件 `cp signature.php.example config/signature.php`, 这个配置文件已由 **版本控制忽略**, 以便于保证每个环境的签名安全
 - 验证 **请求参数** 或者 **请求头部** 中 必须携带 `api-token` 参数
+- 目前没有想到更好的办法, 先试用一段时间, 后续改正
 
 ```php
 // 由服务端提供
@@ -177,3 +180,10 @@ $.ajax({
 - 修复权限的bug(分配权限后, 还是看到全部的菜单)
 - 修改数据表结构 **keywords.type** => **keywords.type_id**
 - 添加后台登陆页背景图(在 `views/admin/auth/login.blade.php` 可以自由更换)
+
+### 2.3
+
+- 添加中间件 `Signature`
+- 去除 `Keyowrds` 中 `key` 的唯一验证
+- 添加扩展 [tucker-eric/eloquentfilter](https://github.com/Tucker-Eric/EloquentFilter), 用于封装查询条件
+- 添加扩展 [jacobcyl/ali-oss-storage](https://github.com/jacobcyl/Aliyun-oss-storage), AliOSS 扩展
