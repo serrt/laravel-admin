@@ -384,7 +384,7 @@ $(function () {
     });
 
     // 监听 select2 删除事件, 去掉删除元素
-    $('.select2[data-ajax-url]').on('select2:unselecting', function (e) {
+    $('.select2[data-ajax-url][multiple]').on('select2:unselecting', function (e) {
         var item = e.params.args.data;
         var data = $(this).select2('data');
         var val = [];

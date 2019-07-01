@@ -15,8 +15,9 @@ class QueryFilter
      */
     public function handle($request, Closure $next)
     {
-        $route_name = $request->route()->action['as'];
-        if (ends_with($route_name, '.index') && $request->isMethod('get')) {
+        $action = $request->route()->action;
+        $route_name = data_get($action, 'as');
+        if ($route_name && ends_with($route_name, '.index') && $request->isMethod('get')) {
             $session_key = QueryFilter::getKey($route_name);
             session([$session_key => $request->all()]);
         }

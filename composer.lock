@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2db09efa42dd99f215132ea33409feda",
+    "content-hash": "43819d475ef520dd737d788cc75e7d36",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -2440,6 +2440,39 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "serrt/lease",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "/Users/panliang/www/projects/admin-iframe-permission/packages/serrt/lease",
+                "reference": "58c4698db5080ec97a0144276c2ffaca1cc227fb",
+                "shasum": null
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Serrt\\Lease\\LeaseServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Serrt\\Lease\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "serrt",
+                    "email": "1163816051@qq.com"
+                }
+            ],
+            "description": "租赁扩展包"
         },
         {
             "name": "spatie/laravel-permission",
@@ -6965,7 +6998,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "serrt/lease": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
