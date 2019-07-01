@@ -25,9 +25,22 @@ trait Resource
         return $filters;
     }
 
+    protected function redirect($uri, $params = [], $message = '')
+    {
+        $params = array_merge($this->getFilters(), $params);
+        $uri = str_contains($uri, '.') ? $uri : $this->getPrefix().'.'.$uri;
+
+        $response = redirect()->route($uri, $params);
+
+        if ($message) {
+            $response->with('flash_message', $message);
+        }
+        return $response;
+    }
+
     public function create()
     {
-        return view($this->getPrefix().'.create');
+        return method_exists($this, 'view') ? $this->view('create') : view($this->getPrefix().'.create');
     }
 
     public function store(Request $request)
@@ -36,7 +49,7 @@ trait Resource
 
         $model->create($request->all());
 
-        return redirect()->route($this->getPrefix().'.index', $this->getFilters())->with('flash_message', '添加成功');
+        return $this->redirect('index', [], '添加成功');
     }
 
     public function show($id)
@@ -44,7 +57,7 @@ trait Resource
         $model = $this->getModel();
         $info = $model->findOrFail($id);
         
-        return view($this->getPrefix().'.show', compact('info'));
+        return method_exists($this, 'view') ? $this->view('show', compact('info')) : view($this->getPrefix().'.show', compact('info'));
     }
 
     public function edit($id)
@@ -53,7 +66,7 @@ trait Resource
 
         $info = $model->findOrFail($id);
 
-        return view($this->getPrefix().'.edit', compact('info'));
+        return method_exists($this, 'view') ? $this->view('edit', compact('info')) : view($this->getPrefix().'.edit', compact('info'));
     }
 
     public function update(Request $request, $id)
@@ -64,7 +77,7 @@ trait Resource
 
         $info->update($request->all());
 
-        return redirect()->route($this->getPrefix().'.index', $this->getFilters())->with('flash_message', '修改成功');
+        return $this->redirect('index', [], '修改成功');
     }
 
     public function destroy($id)
@@ -75,6 +88,6 @@ trait Resource
 
         $info->delete();
 
-        return redirect()->route($this->getPrefix().'.index', $this->getFilters())->with('flash_message', '删除成功');
+        return $this->redirect('index', [], '删除成功');
     }
 }

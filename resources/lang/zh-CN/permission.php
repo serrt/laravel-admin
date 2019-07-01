@@ -37,5 +37,5 @@ return [
     'admin.admin_user.role' => '修改用户角色',
     'admin.admin_user.permission' => '修改用户权限',
     'admin.role.permission' => '修改角色权限',
-    'admin.admin_user.menu' => '修改用户菜单'
+    'admin.admin_user.menu' => '修改用户菜单',
 ];
