@@ -72,6 +72,13 @@ class WebController extends Controller
             $query->where('pid',  $request->input('pid'));
         }
 
+        if ($request->filled('key')) {
+            $condition = '%'.$request->input('key').'%';
+            $query->where(function ($q) use ($condition) {
+                $q->where('name', 'like', $condition)->orWhere('display_name', 'like', $condition);
+            });
+        }
+
         $list = $query->paginate();
 
         return PermissionResource::collection($list)->additional(['code' => Response::HTTP_OK, 'message' => '']);
@@ -146,6 +153,10 @@ class WebController extends Controller
         if ($request->filled('type_key')) {
             $type_key = $request->input('type_key');
             $query->where('type_key', $type_key);
+        }
+
+        if ($request->filled('id')) {
+            $query->whereIn('id', explode(',', $request->input('id')));
         }
 
         $list = $query->paginate();

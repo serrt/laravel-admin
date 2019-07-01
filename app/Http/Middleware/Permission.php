@@ -64,7 +64,13 @@ class Permission
         foreach ($list->where('pid', 0)->sortBy('sort')->all() as $item) {
             $menu = $this->getMenu($list, $item);
             if ($menu['active']) {
-                view()->share('current_menu', $menu);
+                if (isset($menu['children'])) {
+                    $current_menu = $menu;
+                    $current_menu['children'] = collect($current_menu['children'])->where('active', true)->all();
+                    view()->share('current_menu', $current_menu);
+                } else {
+                    view()->share('current_menu', $menu);
+                }
             }
             array_push($menus, $menu);
         }
@@ -76,11 +82,11 @@ class Permission
         $menu = [
             'id' => $item->id,
             'text' => $item->name,
-            'icon' => $item->key?:'fa fa-list',
+            'icon' => $item->key,
             'active' => false,
             'description' => $item->description
         ];
-        $current_url = url()->full();
+        $current_url = url()->current();
         if (!$item->url) {
             $children = [];
             $active = false;

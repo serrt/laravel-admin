@@ -18,7 +18,7 @@
             <div class="form-group">
                 <label for="inputKey" class="control-label col-md-2">key*</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" name="key" id="inputKey" value="{{$entity->key}}" data-rule-required="true" data-rule-remote="{{route('api.web.unique',['table'=>'keywords','unique'=>'key', 'ignore'=>$entity->id])}}">
+                    <input type="text" class="form-control" name="key" id="inputKey" value="{{$entity->key}}" data-rule-required="true">
                 </div>
             </div>
             <div class="form-group">

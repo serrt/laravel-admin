@@ -11,7 +11,8 @@
         "jacobcyl/ali-oss-storage": "^2.1",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "spatie/laravel-permission": "^2.19"
+        "spatie/laravel-permission": "^2.19",
+        "tucker-eric/eloquentfilter": "^1.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -66,6 +67,10 @@
         "packagist": {
             "type": "composer",
             "url": "https://packagist.laravel-china.org"
+        },
+        "serrt": {
+            "type": "path",
+            "url": "/Users/panliang/www/projects/admin-iframe-permission/packages/serrt/lease"
         }
     }
 }

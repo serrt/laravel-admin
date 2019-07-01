@@ -39,7 +39,7 @@
                     @endif
                 </div>
                 <div class="form-group has-feedback {{$errors->has('password')?'has-error':''}}">
-                    <input type="password" name="password" class="form-control" placeholder="Password" value="" required>
+                    <input type="password" name="password" class="form-control" placeholder="Password" value="" autofocus required>
                     <span class="fa fa-lock form-control-feedback"></span>
                     @if($errors->has('password'))
                         <span class="help-block">{{$errors->first('password')}}</span>

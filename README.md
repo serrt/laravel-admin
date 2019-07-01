@@ -70,6 +70,64 @@ Storage::putRemoteFile('target/path/to/file/jacob.jpg', 'http://example.com/jaco
 Storage::disk('oss')->putRemoteFile('target/path/to/file/jacob.jpg', 'http://example.com/jacob.jpg');
 ```
 
+### Api验证签名
+
+- [在线测试](http://lengshifu.hmily.club/sign)
+- 加入签名验证 `app/Http/Middleware/Signature.php`, 中间件 `signature`
+- 验证 **请求参数** 或者 **请求头部** 中 必须携带 `api-token` 参数
+
+```php
+// 由服务端提供
+$access_key = '123456';
+// 由服务端提供
+$secret_key = '123456';
+
+// 6位随机字符串, 由 大小写字母, _(下划线) 组成
+$str = '123456';
+// 当天时间戳(秒级)
+$time = time();
+
+// 计算签名
+$sign = md5($str . '.' . $time . '.' . $secret_key);
+
+// 得到api-token
+$token = $access_key . "." + $timestamp . "." . $str . "." . $sgin;
+```
+
+```javascript
+
+// 由服务端提供
+var access_key = '123456';
+// 由服务端提供
+var secret_key = '123456';
+
+// 6位随机字符串, 由 大小写字母, _(下划线) 组成
+var str = '123456';
+// 当天时间戳(秒级)
+var time = parseInt(new Date().getTime() / 1000);
+
+// 计算签名 md5 需要引用扩展, https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js
+sign = md5(str + '.' + time + '.' + secret_key);
+
+// 得到 api-token
+var token = access_key + "." + timestamp + "." + str + "." + sign;
+
+$.ajax({
+    method: 'get',
+    url: 'http://example.com',
+    headers: {
+        'accept': 'application/json',
+        'api-token': token
+    },
+    success: function (res) {
+
+    },
+    error: function (error) {
+        
+    }
+});
+```
+
 ## TODO
 
 ### [laravel-permission](https://github.com/spatie/laravel-permission)

@@ -45,6 +45,8 @@ class MenusTableSeeder extends Seeder
             $this->index++;
             $menu['pid'] = $pid;
             $menu['sort'] = $key + 1;
+            $menu['url'] = data_get($menu, 'url');
+            $menu['key'] = data_get($menu, 'key');
             $menu['permission_name'] = data_get($item, 'permission_name', $menu['url']);
             unset($menu['children']);
             array_push($data, $menu);

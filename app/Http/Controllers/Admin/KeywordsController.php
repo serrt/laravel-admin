@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Resources\KeywordsTypeResource;
 use App\Models\Keywords;
-use App\Models\KeywordsType;
 use Illuminate\Http\Request;
+use App\Models\KeywordsType;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Response;
-use Illuminate\Validation\Rule;
-use Validator;
+use App\Http\Resources\KeywordsTypeResource;
 
 class KeywordsController extends Controller
 {
@@ -49,7 +46,7 @@ class KeywordsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'key' => 'required|unique:keywords,key',
+            'key' => 'required',
             'name' => 'required',
             'type_id' => 'required'
         ]);
@@ -75,7 +72,7 @@ class KeywordsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'key' => ['required', Rule::unique('keywords', 'key')->ignore($id, 'id')],
+            'key' => 'required',
             'name' => 'required',
             'type_id' => 'required',
         ]);

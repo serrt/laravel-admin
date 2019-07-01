@@ -1,0 +1,13 @@
+<?php
+
+return [
+
+    'roles' => [
+        'access_key' => [
+            'name' => 'name',
+            'secret_key' => 'secret_key',
+        ],
+    ],
+
+    'timeout' => 60,
+];

@@ -35,8 +35,8 @@ class PermissionsTableSeeder extends Seeder
             // 取出admin下面的路由
             if (strpos($action['prefix'], 'admin') !== false) {
                 $ext = explode('.', $action['as']);
-                // 仅限3级
-                if (count($ext) == 3) {
+                // >=3级
+                if (count($ext) >= 3) {
                     $num1 = $ext[0];
                     $num2 = $ext[0].'.'.$ext[1];
                     $num3 = $action['as'];
@@ -60,9 +60,13 @@ class PermissionsTableSeeder extends Seeder
             $permissions->push($permission);
             foreach ($item1 as $value) {
                 $need_trans = 'permission.'.$value;
+                // 匹配权限的翻译文件
                 $trans = __($need_trans);
+                $ar = explode('.', $trans);
                 if ($trans == $need_trans) {
-                    $trans = __('permission.' . explode('.', $trans)[3]);
+                    if (count($ar) == 4) {
+                        $trans = __('permission.' . $ar[3]);
+                    }
                 }
                 $sub_permission = Permission::create([
                     'guard_name' => $guard,

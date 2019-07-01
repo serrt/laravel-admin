@@ -31,10 +31,10 @@ function selectConfig(element) {
                     }
                 };
             },
-        }
+        };
         config.templateResult = function (repo) {
             return repo.text?repo.text:repo.name
-        }
+        };
         config.templateSelection = function (repo) {
             return repo.text?repo.text:repo.name
         }
@@ -67,6 +67,11 @@ function fileType(file) {
         file_type = 'pdf'
     }
     return file_type;
+}
+function getQuery(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r!=null) return unescape(r[2]); return null;
 }
 $(function () {
     // 切换皮肤
@@ -346,22 +351,35 @@ $(function () {
     $.fn.select2.defaults.set('language', 'zh-CN');
     $.fn.select2.defaults.set('theme', 'bootstrap');
     $('.select2').each(function () {
-        var data = $(this).data('json');
-        var config_public = selectConfig($(this));
-        
-        $(this).select2(config_public);
+        var element = $(this);
+        var config_public = selectConfig(element);
+
+        element.select2(config_public);
 
         // 默认选中
+        var query = element.data('id') | getQuery(element.attr('name'));
         if (config_public.data) {
             if ($(this).attr('multiple') && config_public.data.length !== undefined) {
                 var selected = [];
                 for (var i in config_public.data) {
                     selected.push(config_public.data[i].id);
                 }
-                $(this).val(selected).trigger('change');
+                element.val(selected).trigger('change');
             } else {
-                $(this).val([data.id]).trigger('change');
+                element.val([config_public.data[0].id]).trigger('change');
             }
+        } else if (query) {
+            $.ajax({
+                method: 'get',
+                url: $(this).data('ajax-url'),
+                data: {id: query},
+                success: function (res) {
+                    if (res.code === 200 && res.data.length > 0) {
+                        var data = res.data[0];
+                        element.append(new Option(data.text ? data.text : data.name, data.id)).val([data.id]).trigger('change');
+                    }
+                }
+            });
         }
     });
 
@@ -376,7 +394,7 @@ $(function () {
             }
         }
         $(this).val(val).trigger('change');
-        return true;
+        return false;
     });
 
     // file-input 初始化
