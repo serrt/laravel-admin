@@ -18,10 +18,10 @@ class PermissionsTableSeeder extends Seeder
         Cache::forget('spatie.permission.cache');
 
         // 清空已有的权限
-        $tableNames = config('permission.table_names');
-        foreach ($tableNames as $key=>$value) {
-            DB::table($value)->truncate();
-        }
+//        $tableNames = config('permission.table_names');
+//        foreach ($tableNames as $key=>$value) {
+//            DB::table($value)->truncate();
+//        }
 
         // 获取路由上的所有路由
         $route_list = app('router')->getRoutes()->getRoutes();
@@ -48,12 +48,13 @@ class PermissionsTableSeeder extends Seeder
         $index1 = 1;
         $guard = 'admin';
         $permissions = collect();
-        foreach ($data['admin'] as $key1 => $item1) {
-            $permission = Permission::create([
-                'guard_name' => 'admin',
+        foreach ($data[$guard] as $key1 => $item1) {
+            $permission = Permission::updateOrCreate([
+                'guard_name' => $guard,
                 'name' => $key1,
-                'display_name' => __('permission.'.$key1),
                 'pid' => 0,
+            ], [
+                'display_name' => __('permission.'.$key1),
             ]);
             $index1++;
             $index2=1;
@@ -66,13 +67,17 @@ class PermissionsTableSeeder extends Seeder
                 if ($trans == $need_trans) {
                     if (count($ar) == 4) {
                         $trans = __('permission.' . $ar[3]);
+                    } else if (count($ar) == 5) {
+                        $module = data_get($ar, 2);
+                        $trans = __($module.'::permission.'.$value);
                     }
                 }
-                $sub_permission = Permission::create([
+                $sub_permission = Permission::updateOrCreate([
                     'guard_name' => $guard,
                     'name' => $value,
-                    'display_name' => $trans,
                     'pid' => $permission->id,
+                ], [
+                    'display_name' => $trans,
                 ]);
                 $index2++;
                 $permissions->push($sub_permission);
