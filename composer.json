@@ -67,10 +67,6 @@
         "packagist": {
             "type": "composer",
             "url": "https://packagist.laravel-china.org"
-        },
-        "serrt": {
-            "type": "path",
-            "url": "./packages/serrt/mall"
         }
     }
 }
