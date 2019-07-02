@@ -96,6 +96,10 @@ class WebController extends Controller
             $query->where('pid',  $request->input('pid'));
         }
 
+        if ($request->filled('id')) {
+            $query->where('id',  $request->input('id'));
+        }
+
         $list = $query->paginate();
 
         return MenuResource::collection($list)->additional(['code' => Response::HTTP_OK, 'message' => '']);
