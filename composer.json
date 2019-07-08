@@ -1,7 +1,11 @@
 {
     "name": "serrt/laravel-admin",
     "description": "laravel-admin",
-    "keywords": ["framework", "laravel", "larvael-admin"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "larvael-admin"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -11,6 +15,7 @@
         "jacobcyl/ali-oss-storage": "^2.1",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "serrt/mall": "dev-master",
         "spatie/laravel-permission": "^2.19",
         "tucker-eric/eloquentfilter": "^1.4"
     },
@@ -63,10 +68,14 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "repositories": {
-        "packagist": {
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/serrt/mall"
+        },
+        {
             "type": "composer",
             "url": "https://mirrors.aliyun.com/composer/"
         }
-    }
+    ]
 }
