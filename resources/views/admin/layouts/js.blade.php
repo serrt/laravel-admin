@@ -23,4 +23,7 @@
 <!-- Jquery Validate -->
 <script src="{{asset('js/jquery.validate.min.js')}}"></script>
 
+{{--SweetAlert--}}
+<script src="{{asset('js/sweetalert.min.js')}}"></script>
+
 <script src="{{asset('js/app.js')}}"></script>
