@@ -117,7 +117,8 @@ $(function () {
         autoclose: true,
         clearBtn: true,
         format: 'yyyy-mm-dd hh:ii:ss',
-        language: 'zh-CN'
+        language: 'zh-CN',
+        forceParse: false,
     });
 
     $('.time').datetimepicker({
@@ -127,6 +128,7 @@ $(function () {
         language: 'zh-CN',
         minView: 'hour',
         startView: 'day',
+        forceParse: false,
     });
 
     $('.date-range').each(function () {
