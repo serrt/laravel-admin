@@ -436,4 +436,32 @@ $(function () {
             $('input[type="hidden"][name="'+name+'"]').remove();
         });
     });
+
+    // table 中的删除按钮
+    $('.table [data-delete]').on('click', function () {
+        var element = $(this);
+        var url = element.data('delete');
+        swal({
+            title: '提示',
+            text: '是否确定?',
+            buttons: {
+                confirm: {text: '确定'},
+                cancel: {text: '取消', visible: true}
+            }
+        }).then(function (value) {
+            if (value) {
+                $.post(url, {_token: token, _method: 'delete'}).success(function (res) {
+                    if (res.code === 200) {
+                        swal({icon: 'success'}).then(function () {
+                            window.location.reload();
+                        });
+                    } else {
+                        swal({icon: 'error', text: res.message});
+                    }
+                }).error(function (error) {
+                    swal({icon: 'error', title: error.status, text: error.responseJSON.message});
+                });
+            }
+        });
+    });
 });

@@ -49,6 +49,10 @@ trait Resource
 
         $model->create($request->all());
 
+        if ($request->ajax()) {
+            return $this->success([], '添加成功');
+        }
+
         return $this->redirect('index', [], '添加成功');
     }
 
@@ -77,16 +81,24 @@ trait Resource
 
         $info->update($request->all());
 
+        if ($request->ajax()) {
+            return $this->success([], '修改成功');
+        }
+
         return $this->redirect('index', [], '修改成功');
     }
 
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         $model = $this->getModel();
 
         $info = $model->findOrFail($id);
 
         $info->delete();
+
+        if ($request->ajax()) {
+            return $this->success([], '删除成功');
+        }
 
         return $this->redirect('index', [], '删除成功');
     }
