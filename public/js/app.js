@@ -157,6 +157,13 @@ $(function () {
         }).on('changeDate', function (ev) {
             start_time.datetimepicker('setEndDate', ev.date);
         });
+
+        if (start_time.val()) {
+            end_time.datetimepicker('setStartDate', start_time.val());
+        }
+        if (end_time.val()) {
+            start_time.datetimepicker('setEndDate', end_time.val());
+        }
     });
 
     $('.datetime-range').each(function () {
@@ -185,6 +192,13 @@ $(function () {
         }).on('changeDate', function (ev) {
             start_time.datetimepicker('setEndDate', ev.date);
         });
+
+        if (start_time.val()) {
+            end_time.datetimepicker('setStartDate', start_time.val());
+        }
+        if (end_time.val()) {
+            start_time.datetimepicker('setEndDate', end_time.val());
+        }
     });
 
     // Jquery 表单验证
