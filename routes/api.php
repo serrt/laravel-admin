@@ -24,3 +24,8 @@ Route::group(['prefix' => 'web'], function () {
 
     Route::any('unique', ['uses'=>'Api\WebController@unique', 'as' => 'api.web.unique']);
 });
+
+Route::group(['prefix' => 'file-input', 'namespace' => 'Api'], function () {
+    Route::post('upload', 'FileInputController@upload');
+    Route::post('delete', 'FileInputController@delete');
+});

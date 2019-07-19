@@ -1,5 +1,5 @@
 <!-- jQuery 2.2.3 -->
-<script src="{{asset('js/jquery-2.2.3.min.js')}}"></script>
+<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
 <!-- Slimscroll -->
 <script src="{{asset('js/jquery.slimscroll.min.js')}}"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -17,7 +17,6 @@
 <script src="{{asset('bootstrap-fileinput/sortable.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('bootstrap-fileinput/purify.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('bootstrap-fileinput/popper.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('bootstrap-fileinput/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('bootstrap-fileinput/fileinput.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('bootstrap-fileinput/zh.js')}}" type="text/javascript"></script>
 <!-- Jquery Validate -->
