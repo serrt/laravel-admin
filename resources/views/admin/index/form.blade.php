@@ -185,6 +185,19 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-md-2 control-label">File ajax(multiple)</label>
+                    <div class="col-md-8">
+                        <input type="file" class="form-control file-input-ajax" name="files[]" multiple>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">File ajax</label>
+                    <div class="col-md-8">
+                        <input type="file" class="form-control file-input-ajax" name="files">
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <a href="javascript:history.back();" class="btn btn-default">返回</a>
@@ -208,6 +221,62 @@
             }
             $(this).val(val).trigger('change');
             return true;
+        });
+
+        var elements = $('.file-input-ajax');
+        elements.each(function (key) {
+            var element = $(this);
+            // 是否多选
+            var multiple = element.attr('multiple') === 'multiple';
+            // 表单
+            var form = element.parents('.form-group');
+            // 隐藏表单 name 属性
+            var new_input_name = 'file_input_ajax_' + key  + (multiple?'[]':'');
+            // 初始化
+            element.fileinput({
+                uploadUrl:  "{{url('api/file-input/upload')}}",
+                deleteUrl: "{{url('api/file-input/delete')}}",
+                showUpload: false,
+                uploadAsync: false,
+                overwriteInitial: !multiple,
+                initialPreviewAsData: true,
+                language: 'zh',
+                browseClass: 'btn bg-purple',
+                browseLabel: '选择',
+                showAjaxErrorDetails: false,
+                showRemove: false,
+                purifyHtml: true
+            }).on("filebatchselected", function(event, files) {
+                // 当文件选择完成后, 立即上传
+                element.fileinput("upload");
+            }).on("filepredelete", function(jqXHR) {
+                // 删除文件时, 验证是否确定
+                return !confirm("是否确定?");
+            }).on('filebatchuploadsuccess', function (event, data) {
+                // 文件上传成功, 添加隐藏表单
+                var preview = data.response.initialPreviewConfig;
+                for (var i in preview) {
+                    if (multiple) {
+                        form.append('<input type="hidden" name="'+new_input_name+'" value="'+preview[i].key+'"/>');
+                    } else {
+                        var input = $('input[name="'+new_input_name+'"]');
+                        if (input.length > 0) {
+                            input.val(preview[i].key);
+                        } else {
+                            form.append('<input type="hidden" name="'+new_input_name+'" value="'+preview[i].key+'"/>');
+                        }
+                    }
+                }
+            }).on('filedeleted', function (event, key) {
+                // 删除文件时, 删除隐藏表单
+                $('input[name="'+new_input_name+'"][value="'+key+'"]').remove();
+            }).on('filesorted', function(event, params) {
+                // 移动文件时, 重新排序隐藏表单
+                for (var i in params.stack) {
+                    var item = params.stack[i];
+                    $('input[name="'+new_input_name+'"]').eq(i).val(item.key);
+                }
+            });
         });
     })
 </script>

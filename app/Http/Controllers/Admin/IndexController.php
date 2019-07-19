@@ -75,6 +75,7 @@ class IndexController extends Controller
 
     public function upload(Request $request)
     {
+        dd($request->all());
         $imgs_url = session()->get('imgs_url');
 
         // 上传新文件
