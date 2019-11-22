@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec7b5a90c95b5bc07b9bbe8a01e03613",
+    "content-hash": "f286c8c3f6f679f807516973ac1fa053",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -2564,43 +2564,6 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
-        },
-        {
-            "name": "serrt/mall",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/serrt/mall",
-                "reference": "b638e84ccb52a01b9d35f9e3081239132739f8de",
-                "shasum": null
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Serrt\\Mall\\MallServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "database/seeds",
-                    "database/factories"
-                ],
-                "psr-4": {
-                    "Serrt\\Mall\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "serrt",
-                    "email": "1163816051@qq.com"
-                }
-            ],
-            "description": "多商家商城扩展包"
         },
         {
             "name": "spatie/laravel-permission",
@@ -7254,6 +7217,42 @@
             "time": "2015-10-13T18:44:15+00:00"
         },
         {
+            "name": "serrt/mall",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "packages/serrt/mall",
+                "reference": "b638e84ccb52a01b9d35f9e3081239132739f8de"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Serrt\\Mall\\MallServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "database/seeds",
+                    "database/factories"
+                ],
+                "psr-4": {
+                    "Serrt\\Mall\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "serrt",
+                    "email": "1163816051@qq.com"
+                }
+            ],
+            "description": "多商家商城扩展包"
+        },
+        {
             "name": "symfony/filesystem",
             "version": "v4.3.2",
             "source": {
@@ -7533,9 +7532,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "serrt/mall": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
