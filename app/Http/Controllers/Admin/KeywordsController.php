@@ -25,7 +25,7 @@ class KeywordsController extends Controller
         $type = null;
         if ($request->filled('type')) {
             $query_type = $request->input('type');
-            $query->where('type', $query_type);
+            $query->where('type_id', $query_type);
             $type = KeywordsTypeResource::make(KeywordsType::find($query_type));
         }
 
