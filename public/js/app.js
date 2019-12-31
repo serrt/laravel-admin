@@ -391,8 +391,18 @@ $(function () {
                 data: {id: query},
                 success: function (res) {
                     if (res.code === 200 && res.data.length > 0) {
-                        var data = res.data[0];
-                        element.append(new Option(data.text ? data.text : data.name, data.id)).val([data.id]).trigger('change');
+                        if (element.attr('multiple')) {
+                            var ids = [];
+                            for (var i in res.data) {
+                                var data = res.data[i];
+                                element.append(new Option(data.text ? data.text : data.name, data.id));
+                                ids.push(data.id);
+                            }
+                            element.val(ids);
+                        } else {
+                            var data = res.data[0];
+                            element.append(new Option(data.text ? data.text : data.name, data.id)).val([data.id]);
+                        }
                     }
                 }
             });

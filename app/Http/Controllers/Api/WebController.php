@@ -172,7 +172,7 @@ class WebController extends Controller
      * 验证是否唯一
      *
      * @param $table string 验证的数据表名, 必填
-     * @param $ignore string 需要忽略的值, 选填
+     * @param $ignore string 需要验证的值, 选填
      * @param $unique string 验证的数据表列名, 默认: id
      * @param $ignore_column string 需要忽略的key, 默认: id
      */
